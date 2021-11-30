@@ -41,10 +41,10 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = new User();
-    this.createFormLogin();
+    this.createFormSignIn();
   }
 
-  createFormLogin(): void {
+  createFormSignIn(): void {
     this.signIn = this._formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
