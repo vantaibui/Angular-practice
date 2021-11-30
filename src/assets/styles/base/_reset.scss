@@ -1,0 +1,85 @@
+$green: #bac34e;
+$black: #222;
+$white: #fff;
+$light-color: #666;
+$light-bg: #f3f3f3;
+$border: 1px solid rgba(0, 0, 0, 0.1);
+$box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+@mixin grid($val) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+  gap: 1.5rem;
+}
+section {
+  padding: 2rem 10%;
+  text-transform: capitalize;
+}
+
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.8rem 3rem;
+  background: $green;
+  color: $white;
+  font-size: 1.6rem;
+  cursor: pointer;
+  &:hover {
+    background: $black;
+  }
+}
+.heading {
+  background: url(../../../assets/images/home/heading-bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding-top: 12rem;
+  padding-bottom: 8rem;
+  h1 {
+    color: $black;
+    font-size: 4rem;
+    text-transform: capitalize;
+  }
+
+  p {
+    padding-top: 1rem;
+    font-size: 2rem;
+    color: $light-color;
+    text-transform: capitalize;
+
+    a {
+      color: $black;
+      padding-right: 0.5rem;
+
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 1.2rem 0;
+  border-bottom: $border;
+  font-size: 2.5rem;
+  color: $black;
+  text-transform: capitalize;
+
+  span {
+    color: $green;
+    padding-left: 0.7rem;
+  }
+
+  a {
+    margin-left: auto;
+    color: $light-color;
+    font-size: 1.5rem;
+
+    &:hover {
+      color: $green;
+    }
+  }
+}
