@@ -1,25 +1,72 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { NotFoundComponent } from './not-found/not-found.component';
+
+import { AuthGuard } from './shared/guards/auth.guard';
+
 const routes: Routes = [
+  // Home
   {
     path: '',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
+  {
+    path: 'shop',
+    loadChildren: () => import('./shop/shop.module').then((m) => m.ShopModule),
+  },
+  {
+    path: 'about-us',
+    loadChildren: () =>
+      import('./about-us/about-us.module').then((m) => m.AboutUsModule),
+  },
+  {
+    path: 'reviews',
+    loadChildren: () =>
+      import('./reviews/reviews.module').then((m) => m.ReviewsModule),
+  },
+  {
+    path: 'blogs',
+    loadChildren: () =>
+      import('./blogs/blogs.module').then((m) => m.BlogsModule),
+  },
+
+  // Admin
   {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
+    path: 'admin/products',
+    loadChildren: () =>
+      import('./products/products.module').then((m) => m.ProductsModule),
+  },
+  {
+    path: 'admin/users',
+    loadChildren: () =>
+      import('./users/users.module').then((m) => m.UsersModule),
+  },
+
+  // Sign in
+  {
     path: 'sign-in',
     loadChildren: () =>
       import('./sign-in/sign-in.module').then((m) => m.SignInModule),
   },
+
+  // Sign up
   {
     path: 'sign-up',
     loadChildren: () =>
       import('./sign-up/sign-up.module').then((m) => m.SignUpModule),
+  },
+
+  // Not found
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./not-found/not-found.module').then((m) => m.NotFoundModule),
   },
 ];
 

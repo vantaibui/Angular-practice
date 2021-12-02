@@ -7,21 +7,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// Service
-import { AuthenticateService } from './login/services/authenticate.service';
-
 // Module
-import { AdminModule } from './admin/admin.module';
 import { HomeModule } from './home/home.module';
-import { LoginModule } from './login/login.module';
+import { AboutUsModule } from './about-us/about-us.module';
+import { AdminModule } from './admin/admin.module';
+import { ProductsModule } from './products/products.module';
+import { UsersModule } from './users/users.module';
+
 import { SignUpModule } from './sign-up/sign-up.module';
 import { SignInModule } from './sign-in/sign-in.module';
 
+import { AuthGuard } from './shared/guards/auth.guard';
+
 const libraries = [FormsModule, HttpClientModule];
 
-const modules = [AdminModule, HomeModule, SignInModule, SignUpModule];
-
-const services = [AuthenticateService];
+const modules = [
+  HomeModule,
+  AboutUsModule,
+  AdminModule,
+  ProductsModule,
+  UsersModule,
+  SignInModule,
+  SignUpModule,
+];
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +42,7 @@ const services = [AuthenticateService];
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [...services],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

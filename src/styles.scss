@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/material";
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
 
@@ -28,7 +29,7 @@ body {
 :root {
   --color-main: #1a202e;
   // --main-color-seller: #dd2f6e;
-  --main-color-seller: #77d970;
+  --main-color-seller: #bac34e;
   --color-dark-seller: #1d2231;
   --text-grey-seller: #8390a2;
 
@@ -45,5 +46,3 @@ body {
     var(--header-height) - var(--navbar-height)
   );
 }
-
-@import "./assets/styles/material";

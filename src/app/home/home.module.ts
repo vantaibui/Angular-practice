@@ -10,27 +10,16 @@ import { SlideEffectDirective } from './directives/slide-effect.directive';
 // Service
 import { AuthService } from './services/auth/auth.service';
 
-// Page
-import { HomeComponent } from './pages/home.component';
-import { ShopComponent } from './pages/shop/shop.component';
-import { AboutComponent } from './pages/about/about.component';
-import { BlogsComponent } from './pages/blogs/blogs.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { ReviewComponent } from './pages/review/review.component';
+// Module
+import { ShopModule } from '../shop/shop.module';
+import { AboutUsModule } from '../about-us/about-us.module';
 
-const components = [
-  HomeComponent,
-  ShopComponent,
-  AboutComponent,
-  ReviewComponent,
-  BlogsComponent,
-  ContactComponent,
-];
+// Component
+import { HomeComponent } from './home.component';
 
 @NgModule({
-  declarations: [SlideEffectDirective, ...components],
+  declarations: [SlideEffectDirective, HomeComponent],
   providers: [AuthService],
   imports: [CommonModule, HttpClientModule, HomeRoutingModule],
-  exports: [HomeComponent],
 })
 export class HomeModule {}

@@ -64,7 +64,7 @@ export class SignInComponent implements OnInit, OnDestroy {
         (result) => {
           this.user = result;
           if (
-            this.user.firstName.toLowerCase().match('administrator') !== null
+            this.user.firstName.toLowerCase().indexOf('administrator') !== -1
           ) {
             this._router.navigateByUrl('/admin');
           } else {

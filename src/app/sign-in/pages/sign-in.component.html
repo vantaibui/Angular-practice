@@ -1,4 +1,8 @@
-<form class="login-form" [formGroup]="signIn" (ngSubmit)="onLogin()">
+<form
+  class="mat-typography login-form"
+  [formGroup]="signIn"
+  (ngSubmit)="onLogin()"
+>
   <h3>sign in</h3>
   <mat-form-field class="form-field" appearance="outline">
     <mat-label>Username</mat-label>

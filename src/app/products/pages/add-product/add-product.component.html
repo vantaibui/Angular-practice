@@ -1,1 +1,50 @@
-<p>add-product works!</p>
+<form
+  class="login-form signup-form mat-typography"
+  [formGroup]="createProductForm"
+  (ngSubmit)="onCreateProduct()"
+>
+  <h3>create product</h3>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="name"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Price</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="price"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Quantity</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="quantity"
+    />
+  </mat-form-field>
+
+  <div class="form-field input-radio" placeholder=" ">
+    <label>Status </label>
+    <mat-radio-group formControlName="status" class="radio-group">
+      <mat-radio-button value="true" [checked]="true">Active</mat-radio-button>
+      <mat-radio-button value="false">No active</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <button type="submit" class="btn">Create</button>
+</form>

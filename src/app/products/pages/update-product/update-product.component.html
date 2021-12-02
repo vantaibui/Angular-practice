@@ -1,1 +1,66 @@
-<p>update-product works!</p>
+<form
+  class="login-form signup-form mat-typography"
+  [formGroup]="editProductForm"
+  (ngSubmit)="onUpdateProduct()"
+>
+  <h3>Edit product</h3>
+  <p>{{ product.name }}</p>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="name"
+      [(ngModel)]="product.name"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Price</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="price"
+      [(ngModel)]="product.price"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Quantity</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="quantity"
+      [(ngModel)]="product.quantity"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Thumbnail</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="thumbnail"
+      [(ngModel)]="product.price"
+    />
+  </mat-form-field>
+
+  <div class="form-field input-radio" placeholder=" ">
+    <label>Status </label>
+    <mat-radio-group class="radio-group" formControlName="status">
+      <mat-radio-button value="true" [checked]="true">Active</mat-radio-button>
+      <mat-radio-button value="false">No active</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <button type="submit" class="btn">Update</button>
+</form>

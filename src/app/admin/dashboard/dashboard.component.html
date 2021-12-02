@@ -1,0 +1,106 @@
+<div class="cards">
+  <div class="card-single">
+    <div class="card-info">
+      <h1>54</h1>
+      <span>Customer</span>
+    </div>
+    <div class="card-icon">
+      <i class="fa fa-users"></i>
+    </div>
+  </div>
+  <div class="card-single">
+    <div class="card-info">
+      <h1>79</h1>
+      <span>Projects</span>
+    </div>
+    <div class="card-icon">
+      <i class="fa fa-clipboard-list"></i>
+    </div>
+  </div>
+  <div class="card-single">
+    <div class="card-info">
+      <h1>124</h1>
+      <span>Orders</span>
+    </div>
+    <div class="card-icon">
+      <i class="fa fa-shopping-bag"></i>
+    </div>
+  </div>
+  <div class="card-single">
+    <div class="card-info">
+      <h1>$6k</h1>
+      <span>Income</span>
+    </div>
+    <div class="card-icon">
+      <i class="fab fa-google-wallet"></i>
+    </div>
+  </div>
+</div>
+
+<div class="recent-flex">
+  <div class="projects">
+    <div class="card">
+      <div class="card-header">
+        <h3>Products</h3>
+        <button class="btn btn-expand" routerLink="/products">
+          See all <i class="fa fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <ng-container
+                  *ngFor="let product of products; let index = index"
+                >
+                  <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price | currency: "USD" }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>
+                      <span [class]="{ status: true }"></span>
+                      {{ product.status }}
+                    </td>
+                  </tr>
+                </ng-container> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="customers">
+    <div class="card">
+      <div class="card-header">
+        <h3>User</h3>
+        <button class="btn btn-expand">
+          See all <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="customer">
+          <div class="customer__info">
+            <div class="avatar">
+              <img src="../../../assets/images/admin/user.png" alt="user" />
+            </div>
+            <div class="info">
+              <h4>Lewis S. Cunningham</h4>
+              <small>CEO Excerpt</small>
+            </div>
+          </div>
+          <div class="customer__contact">
+            <i class="fas fa-user-circle"></i>
+            <i class="fas fa-comment"></i>
+            <i class="fas fa-phone"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+@import "../../../../assets/styles/base/reset";
+
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: $white;
+  border-radius: 0.5rem;
+  box-shadow: $box-shadow;
+  width: 40rem;
+  padding: 3rem;
+  transition: right 0.4s linear;
+  h3 {
+    color: $black;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 0.7rem;
+  }
+  .form-field {
+    width: 100%;
+    padding: 1rem 0 0.5rem;
+  }
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    margin-left: 2px;
+    label {
+      font-size: 1.2rem;
+      color: $light-color;
+      cursor: pointer;
+    }
+  }
+  .btn {
+    margin: 1rem 0;
+    width: 100%;
+    text-align: center;
+  }
+  p {
+    color: $light-color;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    margin: 0;
+    font-size: 1.2rem;
+    a {
+      color: $green;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.signup-form {
+  width: 60rem;
+  .form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    flex-wrap: nowrap;
+    margin: 0 -10px;
+    .form-group {
+      padding: 0 10px;
+      flex: 0 0 50%;
+      max-width: 50%;
+      // & + .form-group {
+      //   margin-left: 5px;
+      // }
+      .form-field {
+        width: 100%;
+      }
+    }
+  }
+  .input-radio {
+    border-radius: 6px;
+    border: 1px solid rgba(#000000, 0.12);
+    padding: 2.4rem 4px;
+    position: relative;
+    // &:focus,
+    // &:hover {
+    //   padding: 1.4rem 10px;
+
+    //   label {
+    //     top: 0;
+    //     left: 4px;
+    //   }
+    //   .radio-group {
+    //     display: inline-block;
+    //   }
+    // }
+    label {
+      position: absolute;
+      top: 0;
+      left: 4px;
+      font-size: 1.4rem;
+      color: rgba(0, 0, 0, 0.6);
+      transform: translateY(-50%);
+      display: inline-block;
+      padding-left: 6px;
+      padding-right: 6px;
+      background: #fff;
+    }
+    .radio-group {
+      // display: none;
+    }
+  }
+  mat-form-field {
+    padding: 0 !important;
+  }
+  .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+  }
+  mat-radio-button {
+    & + mat-radio-button {
+      margin-left: 10px;
+    }
+  }
+}

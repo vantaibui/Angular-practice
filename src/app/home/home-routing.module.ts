@@ -2,19 +2,23 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Component
-import * as Component from './pages';
+import { HomeComponent } from './home.component';
+import { IndexComponent } from './page/index.component';
+import { ShopComponent } from '../shop/shop.component';
+import { AboutUsComponent } from '../about-us/about-us.component';
+import { ReviewsComponent } from '../reviews/reviews.component';
+import { BlogsComponent } from '../blogs/blogs.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: '',
-    component: Component.HomeComponent,
+    component: HomeComponent,
     children: [
-      { path: 'shop', component: Component.ShopComponent },
-      { path: 'about', component: Component.AboutComponent },
-      { path: 'review', component: Component.ReviewComponent },
-      { path: 'blogs', component: Component.BlogsComponent },
-      { path: 'contact', component: Component.ContactComponent },
+      { path: '', component: IndexComponent },
+      { path: 'shop', component: ShopComponent },
+      { path: 'about-us', component: AboutUsComponent },
+      { path: 'reviews', component: ReviewsComponent },
+      { path: 'blogs', component: BlogsComponent },
     ],
   },
 ];

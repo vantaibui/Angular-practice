@@ -1,0 +1,26 @@
+<h1>Product list</h1>
+
+<ul *ngFor="let product of productList">
+  <li [style]="{ margin: '10px' }">
+    {{ product.name }}
+    <button
+      type="button"
+      [style]="{ padding: '10px', backgroundColor: 'red', cursor: 'pointer' }"
+      (click)="onDeleteProduct(product.id)"
+    >
+      Delete
+    </button>
+    <button
+      type="button"
+      [style]="{
+        marginLeft: '10px',
+        padding: '10px',
+        backgroundColor: 'blue',
+        cursor: 'pointer'
+      }"
+      [routerLink]="['/admin/products/editProduct', product.id]"
+    >
+      Edit
+    </button>
+  </li>
+</ul>

@@ -1,0 +1,231 @@
+@import "../../../assets/styles/base/reset";
+
+// Home
+@keyframes fadeLeft {
+  0% {
+    transform: translateX(-5rem);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+.home {
+  padding-top: 14rem;
+  background: url(../../../assets/images/home/home-bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .slides-container {
+    .slide {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 3rem;
+      display: none;
+      &.active {
+        display: flex;
+      }
+      .content {
+        flex: 1 1 40rem;
+        padding-left: 10rem;
+        animation: fadeLeft 0.4s linear 0.4s backwards;
+        text-transform: capitalize;
+        span {
+          color: $light-color;
+          font-size: 2.5rem;
+        }
+        h3 {
+          font-size: 6rem;
+          color: $black;
+          padding: 0.5rem 0;
+        }
+        .btn {
+          text-transform: capitalize;
+        }
+      }
+      .image {
+        flex: 1 1 40rem;
+        margin: 3rem 0;
+        img {
+          width: 100%;
+          animation: fadeUp 0.4s linear;
+        }
+      }
+    }
+  }
+  #prev-slide,
+  #next-slide {
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    width: 5rem;
+    height: 5rem;
+    font-size: 3rem;
+    color: $black;
+    line-height: 5rem;
+    text-align: center;
+    box-shadow: $box-shadow;
+    background: $white;
+    cursor: pointer;
+
+    &:hover {
+      background: $green;
+      color: $white;
+    }
+  }
+  #next-slide {
+    left: unset;
+    right: 2rem;
+  }
+}
+
+// Banner
+.banner-container {
+  @include grid(32rem);
+  padding: 2rem 10%;
+
+  .banner {
+    position: relative;
+    height: 25rem;
+    overflow: hidden;
+
+    &:hover img {
+      transform: scale(1.2);
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      transform: translateY(-50%);
+      text-transform: capitalize;
+      span {
+        color: $light-color;
+        font-size: 1.5rem;
+      }
+
+      h3 {
+        font-size: 2rem;
+        padding-top: 0.5rem;
+        color: $black;
+      }
+
+      .btn {
+        padding: 0.8rem 2.5rem;
+      }
+    }
+  }
+}
+
+// Category
+.category .box-container {
+  @include grid(16rem);
+  padding: 4rem 0;
+
+  .box {
+    text-align: center;
+
+    img {
+      height: 15rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+      margin: 1rem 0;
+      color: $light-color;
+    }
+
+    &:hover h3 {
+      color: $green;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+  .header {
+    padding: 2rem;
+  }
+  .home {
+    #prev-slide,
+    #next-slide {
+      transform: translateY(0);
+      top: 88%;
+    }
+    #prev-slide {
+      left: auto;
+      right: 8rem;
+    }
+  }
+}
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
+  .header {
+    .search-form {
+      width: 100%;
+      right: 0;
+      height: 3.2rem;
+      border-radius: 0;
+      &.active {
+        top: 99%;
+        border-top: $border;
+        border-bottom: $border;
+      }
+      input {
+        padding: 0 2rem;
+        &::placeholder {
+          font-size: 1.1rem;
+          font-weight: 400;
+        }
+      }
+    }
+    .navbar {
+      position: absolute;
+      top: 99%;
+      left: 0;
+      right: 0;
+      background: $white;
+      border-top: $border;
+      border-bottom: $border;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      &.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+      .navbar-link {
+        margin: 1.5rem;
+        padding: 1.5rem;
+        background: $light-bg;
+        border-radius: 0.5rem;
+        font-size: 2rem;
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+}
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+  .home .slides-container .slide h3 {
+    font-size: 5rem;
+  }
+}
