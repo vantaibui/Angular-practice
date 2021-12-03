@@ -8,16 +8,6 @@ import * as Constants from '../../constants';
 // Model
 import { Product } from 'src/models/Product';
 
-// Config
-import { APIClient } from '../APIClient';
-
-const client = new APIClient({ endpoint: 'products' });
-
-let userLogin: any = localStorage.getItem(Constants.USER_LOGIN);
-
-let token: string | null =
-  userLogin !== null ? JSON.parse(userLogin).token : {};
-
 @Injectable({
   providedIn: 'root',
 })
@@ -33,49 +23,26 @@ export class ProductAPI {
   }
 
   createProduct(product: any): Observable<Product> {
-    return this._http.post<Product>(`${Constants.BASE_URL}/products`, product, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
-      },
-    });
+    return this._http.post<Product>(`${Constants.BASE_URL}/products`, product);
   }
 
   updateEntireProduct(product: Product): Observable<Product> {
     return this._http.put<Product>(
       `${Constants.BASE_URL}/products/${product.id}`,
-      product,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        },
-      }
+      product
     );
   }
 
   updatePartialProduct(product: Product): Observable<Product> {
     return this._http.patch<Product>(
       `${Constants.BASE_URL}/products/${product.id}`,
-      product,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        },
-      }
+      product
     );
   }
 
   deleteProductById(productID: number): Observable<Product> {
     return this._http.delete<Product>(
-      `${Constants.BASE_URL}/products/${productID}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + token,
-        },
-      }
+      `${Constants.BASE_URL}/products/${productID}`
     );
   }
 }

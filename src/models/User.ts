@@ -13,6 +13,7 @@ export class User extends AbstractModel {
   private _phone!: string;
 
   private _role!: string;
+  private _token?: string;
 
   constructor() {
     super();
@@ -77,5 +78,11 @@ export class User extends AbstractModel {
   }
   get role(): string {
     return this._role;
+  }
+  set token(token: string) {
+    this._token = token;
+  }
+  get token(): string {
+    return this._token!;
   }
 }

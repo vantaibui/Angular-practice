@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,6 +18,8 @@ import { SignUpModule } from './sign-up/sign-up.module';
 import { SignInModule } from './sign-in/sign-in.module';
 
 import { AuthGuard } from './shared/guards/auth.guard';
+import { AuthenticationService } from './shared/services/authentication.service';
+import { Authorization } from './shared/helpers/authorization.interceptor';
 
 const libraries = [FormsModule, HttpClientModule];
 
@@ -42,7 +44,12 @@ const modules = [
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    AuthenticationService,
+    Authorization,
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD ' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

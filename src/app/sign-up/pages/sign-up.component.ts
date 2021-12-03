@@ -63,20 +63,20 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   onSignUp(): void {
     console.log(this.signUpForm.value);
-    // this._subscription = this._signUpService
-    //   .signUp(this.signUpForm.value)
-    //   .subscribe(
-    //     (result) => {
-    //       this.user = result;
-    //       this._router.navigateByUrl('/sign-in');
-    //       this.signUpForm.reset();
-    //       console.log(result);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //       this._router.navigateByUrl('/sign-up');
-    //     }
-    //   );
+    this._subscription = this._signUpService
+      .signUp(this.signUpForm.value)
+      .subscribe(
+        (result) => {
+          this.user = result;
+          this._router.navigateByUrl('/sign-in');
+          this.signUpForm.reset();
+          console.log(result);
+        },
+        (error) => {
+          console.log(error);
+          this._router.navigateByUrl('/sign-up');
+        }
+      );
   }
 
   ngOnDestroy(): void {

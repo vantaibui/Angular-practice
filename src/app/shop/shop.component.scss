@@ -33,6 +33,7 @@
     background: $light-bg;
     text-align: center;
     overflow: hidden;
+    cursor: pointer;
 
     &:hover .icons {
       top: 0;

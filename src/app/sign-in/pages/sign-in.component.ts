@@ -62,10 +62,9 @@ export class SignInComponent implements OnInit, OnDestroy {
       .authenticate(userLogin.username, userLogin.password)
       .subscribe(
         (result) => {
+          console.log(result);
           this.user = result;
-          if (
-            this.user.firstName.toLowerCase().indexOf('administrator') !== -1
-          ) {
+          if (this.user.role.toLowerCase().indexOf('admin') !== -1) {
             this._router.navigateByUrl('/admin');
           } else {
             this._router.navigateByUrl('/');
@@ -74,7 +73,8 @@ export class SignInComponent implements OnInit, OnDestroy {
           this.signIn.reset();
         },
         (error) => {
-          this._router.navigateByUrl('/login');
+          console.log(error.error);
+          this._router.navigateByUrl('/sign-in');
         }
       );
   }
