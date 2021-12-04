@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { NotFoundComponent } from './not-found/not-found.component';
-
-import { AuthGuard } from './shared/guards/auth.guard';
-
 const routes: Routes = [
   // Home
   {
@@ -36,6 +32,11 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'admin/categories',
+    loadChildren: () =>
+      import('./categories/categories.module').then((m) => m.CategoriesModule),
   },
   {
     path: 'admin/products',

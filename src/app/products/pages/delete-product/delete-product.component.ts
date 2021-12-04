@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProductAPI } from 'src/apis/product/product.api';
 import { Product } from 'src/models/Product';
 import { ProductManagementService } from '../../services/product-management.service';
 
@@ -12,15 +11,12 @@ import { ProductManagementService } from '../../services/product-management.serv
 export class DeleteProductComponent implements OnInit {
   public productList: Product[] = [];
 
-  constructor(
-    private _productAPI: ProductAPI,
-    private _productService: ProductManagementService
-  ) {}
+  constructor(private _productService: ProductManagementService) {}
 
   ngOnInit(): void {}
 
   onDeleteProduct(id: number): void {
-    this._productService.actionDeleteProduct(this._productAPI, id).subscribe(
+    this._productService.actionDeleteProduct(id).subscribe(
       (result) => {
         this.updateDataAfterDelete(id);
       },

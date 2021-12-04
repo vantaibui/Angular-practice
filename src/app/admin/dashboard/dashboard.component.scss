@@ -69,11 +69,12 @@
         }
       }
       .card-body {
-        padding: 1rem;
+        // padding: 1rem;
         table {
           width: 100%;
           overflow-x: hidden;
           border-collapse: collapse;
+          box-shadow: none;
           thead {
             tr {
               border-bottom: 2px solid #f0f0f0;
@@ -177,4 +178,8 @@
       }
     }
   }
+}
+
+.mat-elevation-z8 {
+  box-shadow: none !important;
 }

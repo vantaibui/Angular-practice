@@ -62,7 +62,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   onSignUp(): void {
-    console.log(this.signUpForm.value);
     this._subscription = this._signUpService
       .signUp(this.signUpForm.value)
       .subscribe(
@@ -70,10 +69,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
           this.user = result;
           this._router.navigateByUrl('/sign-in');
           this.signUpForm.reset();
-          console.log(result);
         },
         (error) => {
-          console.log(error);
+          console.log(error.error);
           this._router.navigateByUrl('/sign-up');
         }
       );

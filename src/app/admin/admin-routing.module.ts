@@ -5,21 +5,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from '../products/products.component';
-import { AuthGuard } from '../shared/guards/auth.guard';
+import { AuthorizationGuard } from '../shared/helpers/authorization.guard';
 
 const routes: Routes = [
   { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: 'dashboard', component: DashboardComponent },
-      {
-        path: 'products',
-        component: ProductsComponent,
-      },
-    ],
+    canActivate: [AuthorizationGuard],
+    children: [{ path: 'dashboard', component: DashboardComponent }],
   },
 ];
 

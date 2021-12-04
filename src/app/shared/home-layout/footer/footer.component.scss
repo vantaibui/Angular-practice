@@ -1,0 +1,56 @@
+@import "../../../../assets/styles/base/reset";
+
+// Footer
+.footer {
+  background: $light-bg;
+  padding: 1.2rem 10%;
+  .box-container {
+    @include grid(25rem);
+    .box {
+      h3 {
+        font-size: 2.2rem;
+        color: $black;
+        text-transform: capitalize;
+        padding: 1rem 0;
+      }
+      p {
+        font-size: 1.5rem;
+        color: $light-color;
+        text-transform: capitalize;
+        padding-bottom: 0.5rem;
+      }
+      a {
+        font-size: 1.4rem;
+        color: $light-color;
+        text-transform: capitalize;
+        padding: 1rem 0;
+        display: block;
+        &:hover {
+          color: $green;
+          i {
+            transition: 0.2s linear;
+            padding-right: 2rem;
+          }
+        }
+        i {
+          padding-right: 0.5rem;
+          color: $green;
+        }
+      }
+      .subscribe-form {
+        input[type="text"] {
+          width: 100%;
+          padding: 1rem 1.2rem;
+          font-size: 1.6rem;
+          color: $black;
+          margin: 1rem 0;
+          text-transform: none;
+        }
+      }
+      .img-payment {
+        width: 100%;
+        margin-top: 2rem;
+      }
+    }
+  }
+}

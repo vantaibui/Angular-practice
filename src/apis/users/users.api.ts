@@ -20,7 +20,7 @@ export class UsersAPI {
   }
 
   logout(): void {
-    localStorage.getItem(`${Constants.USER_LOGIN}`);
+    localStorage.removeItem(`${Constants.USER_LOGIN}`);
   }
 
   fetchAllUser(): Observable<User> {

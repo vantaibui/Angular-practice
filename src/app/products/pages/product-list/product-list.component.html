@@ -1,26 +1,118 @@
-<h1>Product list</h1>
+<button
+  mat-raised-button
+  color="primary"
+  class="btn-material-add"
+  (click)="openForm = !openForm"
+>
+  <mat-icon>add</mat-icon>
+  Add product
+</button>
+<!-- routerLink="/admin/products/addProduct" -->
 
-<ul *ngFor="let product of productList">
-  <li [style]="{ margin: '10px' }">
-    {{ product.name }}
-    <button
-      type="button"
-      [style]="{ padding: '10px', backgroundColor: 'red', cursor: 'pointer' }"
-      (click)="onDeleteProduct(product.id)"
-    >
-      Delete
-    </button>
-    <button
-      type="button"
-      [style]="{
-        marginLeft: '10px',
-        padding: '10px',
-        backgroundColor: 'blue',
-        cursor: 'pointer'
-      }"
-      [routerLink]="['/admin/products/editProduct', product.id]"
-    >
-      Edit
-    </button>
-  </li>
-</ul>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <td mat-cell *matCellDef="let product">{{ product.price }}</td>
+    </ng-container>
+
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+      <td mat-cell *matCellDef="let product">{{ product.quantity }}</td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let product">{{ product.category }}</td>
+    </ng-container>
+
+    <!-- Thumbnail Column -->
+    <ng-container matColumnDef="thumbnail">
+      <th mat-header-cell *matHeaderCellDef>Thumbnail</th>
+      <td mat-cell *matCellDef="let product">{{ product.thumbnail }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let product">
+        <ng-container *ngIf="product.status === true; else noActive">
+          <button
+            [style]="{
+              width: '20px',
+              height: '20px',
+              boxShadow: 'none',
+              display: 'flex',
+              justifyContent: 'center'
+            }"
+            mat-mini-fab
+            color="primary"
+          ></button>
+        </ng-container>
+        <ng-template #noActive>
+          <button
+            [style]="{
+              width: '20px',
+              height: '20px',
+              boxShadow: 'none',
+              display: 'flex',
+              justifyContent: 'center'
+            }"
+            mat-mini-fab
+            color="warn"
+          ></button>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let product">
+        <button
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/admin/products/editProduct', product.id]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="onDeleteProduct(product.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [length]="productList?.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 30]"
+    showFirstLastButtons
+    aria-label="Select page of periodic products"
+  >
+  </mat-paginator>
+</div>
+
+<app-add-product [class.form-add-product]="openForm"></app-add-product>

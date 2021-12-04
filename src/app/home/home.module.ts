@@ -16,10 +16,19 @@ import { AboutUsModule } from '../about-us/about-us.module';
 
 // Component
 import { HomeComponent } from './home.component';
+import { HeaderModule } from '../shared/home-layout/header/header.module';
+import { FooterModule } from '../shared/home-layout/footer/footer.module';
 
 @NgModule({
   declarations: [SlideEffectDirective, HomeComponent],
   providers: [AuthService],
-  imports: [CommonModule, HttpClientModule, HomeRoutingModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    ShopModule,
+    HomeRoutingModule,
+    HeaderModule,
+    FooterModule,
+  ],
 })
 export class HomeModule {}

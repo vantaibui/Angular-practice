@@ -1,0 +1,42 @@
+<form
+  class="login-form signup-form mat-typography"
+  [formGroup]="createCategoryForm"
+  (ngSubmit)="onCreateCategory()"
+>
+  <h3>create category</h3>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Code</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="code"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="name"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Thumbnail</mat-label>
+    <input
+      type="file"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="thumbnail"
+    />
+  </mat-form-field>
+
+  <button type="submit" class="btn">Create</button>
+</form>

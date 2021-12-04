@@ -17,21 +17,20 @@ import { UsersModule } from './users/users.module';
 import { SignUpModule } from './sign-up/sign-up.module';
 import { SignInModule } from './sign-in/sign-in.module';
 
-import { AuthGuard } from './shared/guards/auth.guard';
-import { AuthenticationService } from './shared/services/authentication.service';
-import { Authorization } from './shared/helpers/authorization.interceptor';
+import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
+import { AuthorizationGuard } from './shared/helpers/authorization.guard';
 
 const libraries = [FormsModule, HttpClientModule];
 
-const modules = [
-  HomeModule,
-  AboutUsModule,
-  AdminModule,
-  ProductsModule,
-  UsersModule,
-  SignInModule,
-  SignUpModule,
-];
+// const modules = [
+//   HomeModule,
+//   AboutUsModule,
+//   AdminModule,
+//   ProductsModule,
+//   UsersModule,
+//   SignInModule,
+//   SignUpModule,
+// ];
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,15 +39,14 @@ const modules = [
     FormsModule,
     HttpClientModule,
     ...libraries,
-    ...modules,
+    // ...modules,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
   providers: [
-    AuthGuard,
-    AuthenticationService,
-    Authorization,
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD ' },
+    JwtInterceptor,
+    AuthorizationGuard,
   ],
   bootstrap: [AppComponent],
 })

@@ -17,6 +17,7 @@ export class SignUpService {
 
   signUp(user: User): Observable<User> {
     // return this._http.post<User>(`${Constants.BASE_URL}/register`, user);
+    user.role = 'User';
     return this._usersAPI.signUp(user);
   }
 }

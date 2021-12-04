@@ -1,0 +1,86 @@
+<header class="header">
+  <a [routerLink]="['/']" class="logo"
+    ><i class="fas fa-shopping-basket"></i>groco</a
+  >
+  <nav class="navbar">
+    <a
+      class="navbar-link"
+      [routerLink]="['/']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a class="navbar-link" [routerLink]="['/shop']" routerLinkActive="active"
+      >Shop</a
+    >
+    <a
+      class="navbar-link"
+      [routerLink]="['/about-us']"
+      routerLinkActive="active"
+      >About</a
+    >
+    <a class="navbar-link" [routerLink]="['/reviews']" routerLinkActive="active"
+      >Review</a
+    >
+    <a class="navbar-link" [routerLink]="['/blogs']" routerLinkActive="active"
+      >Blog</a
+    >
+  </nav>
+  <div class="icons">
+    <div class="fas fa-bars" id="menu-btn"></div>
+    <div
+      class="fas fa-search"
+      id="search-btn"
+      (click)="
+        activeFormSearch = !activeFormSearch;
+        activeFormSignIn = false;
+        activeFormCart = false
+      "
+    ></div>
+    <div
+      class="fas fa-shopping-cart"
+      id="cart-btn"
+      (click)="
+        activeFormCart = !activeFormCart;
+        activeFormSignIn = false;
+        activeFormSearch = false
+      "
+    ></div>
+    <div class="fas fa-user" id="login-btn" routerLink="/sign-in"></div>
+  </div>
+  <form class="search-form" [class.active]="activeFormSearch">
+    <input
+      type="search"
+      name="search"
+      id="search-box"
+      placeholder="Search..."
+    />
+    <label for="search-box" class="far fa-search"></label>
+  </form>
+  <div class="shopping-cart" [class.active]="activeFormCart">
+    <div class="box">
+      <i class="fas fa-times"></i>
+      <img src="../../assets/images/home/cart-1.jpg" alt="image" />
+      <div class="content">
+        <h3>organic food</h3>
+        <span class="quantity">1</span>
+        <span class="multiply">x</span>
+        <span class="price">$18</span>
+      </div>
+    </div>
+    <h3 class="total">Total: <span>56.97</span></h3>
+    <a href="" class="btn">checkout cart</a>
+  </div>
+  <form class="login-form" [class.active]="activeFormSignIn">
+    <h3>log in</h3>
+    <input type="text" placeholder="Enter username/ email ..." class="box" />
+    <input type="password" placeholder="Enter password ..." class="box" />
+    <div class="remember">
+      <input type="checkbox" name="remember-me" id="remember-me" />
+      <label for="remember-me">Remember me</label>
+    </div>
+    <button class="btn">Login</button>
+    <p>Forgot password? <a href="">Lấy lại mật khẩu</a></p>
+    <p>Don't have an account? <a href="">Sign up</a></p>
+  </form>
+</header>

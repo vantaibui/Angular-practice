@@ -38,6 +38,16 @@
     />
   </mat-form-field>
 
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      <ng-container *ngFor="let category of categories">
+        <mat-option [value]="category.code">{{ category.name }}</mat-option>
+      </ng-container>
+      <!-- <mat-option value="two">Second option</mat-option> -->
+    </mat-select>
+  </mat-form-field>
+
   <div class="form-field input-radio" placeholder=" ">
     <label>Status </label>
     <mat-radio-group formControlName="status" class="radio-group">

@@ -9,6 +9,8 @@ import { Product } from 'src/models/Product';
 import * as Constants from '../../../constants';
 
 import { ProductAPI } from '../../../apis/product/product.api';
+import { CategoryAPI } from 'src/apis/category/category.api';
+import { Category } from 'src/models/Category';
 
 let userLogin: any = localStorage.getItem(Constants.USER_LOGIN);
 
@@ -19,57 +21,43 @@ let token: string | null =
   providedIn: 'root',
 })
 export class ProductManagementService {
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _productAPI: ProductAPI,
+    private _categoryAPI: CategoryAPI
+  ) {}
 
-  public data: Product[] = [];
-
-  actionFetchAllProduct(productAPI: ProductAPI): Observable<Product[]> {
-    return productAPI.fetchAllProduct();
+  actionFetchAllProduct(): Observable<Product[]> {
+    return this._productAPI.fetchAllProduct();
   }
 
-  actionFetchProductById(
-    productAPI: ProductAPI,
-    id: number
-  ): Observable<Product> {
+  actionFetchProductById(id: number): Observable<Product> {
     // return this._http.get<Product>(`${Constants.BASE_URL}/products/${id}`);
-    return productAPI.fetchProductById(id);
+    return this._productAPI.fetchProductById(id);
   }
-  actionCreateProduct(
-    productAPI: ProductAPI,
-    product: Product
-  ): Observable<Product> {
+  actionCreateProduct(product: Product): Observable<Product> {
     let productNew = {
       name: product.name,
       price: product.price,
       quantity: product.quantity,
       thumbnail: product.thumbnail,
+      category: product.category,
       status: product.status,
     };
-
-    return productAPI.createProduct(productNew);
+    return this._productAPI.createProduct(productNew);
   }
 
-  actionUpdateEntireProduct(
-    productAPI: ProductAPI,
-    product: Product
-  ): Observable<Product> {
-    return this._http.put<Product>(
-      `${Constants.BASE_URL}/products/${product.id}`,
-      product
-    );
+  actionUpdateEntireProduct(product: Product): Observable<Product> {
+    return this._productAPI.updateEntireProduct(product);
   }
 
-  actionUpdatePartialProduct(
-    productAPI: ProductAPI,
-    productUpdate: Product
-  ): Observable<Product> {
-    return productAPI.updatePartialProduct(productUpdate);
+  actionUpdatePartialProduct(productUpdate: Product): Observable<Product> {
+    return this._productAPI.updatePartialProduct(productUpdate);
   }
 
-  actionDeleteProduct(
-    productAPI: ProductAPI,
-    productID: number
-  ): Observable<Product> {
-    return productAPI.deleteProductById(productID);
+  actionDeleteProduct(productID: number): Observable<Product> {
+    return this._productAPI.deleteProductById(productID);
+  }
+  actionFetchAllCategory(): Observable<Category[]> {
+    return this._categoryAPI.fetchAllCategory();
   }
 }

@@ -5,6 +5,7 @@ export class Product extends AbstractModel {
   private _price!: number;
   private _quantity!: number;
   private _thumbnail!: string;
+  private _category!: string;
   private _status!: boolean;
 
   set name(name: string) {
@@ -30,6 +31,12 @@ export class Product extends AbstractModel {
   }
   get thumbnail(): string {
     return this._thumbnail;
+  }
+  set category(category: string) {
+    this._category = category;
+  }
+  get category(): string {
+    return this._category;
   }
   set status(status: boolean) {
     this._status = status;

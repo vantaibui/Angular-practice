@@ -49,34 +49,33 @@ export class SignInComponent implements OnInit, OnDestroy {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
-    // this.signIn = new FormGroup({
-    //   username: new FormControl('', [Validators.required]),
-    //   password: new FormControl('', [Validators.required]),
-    // });
   }
 
   onLogin(): void {
     let userLogin = this.signIn.value;
 
-    this._subscription = this._authService
+    this._authService
       .authenticate(userLogin.username, userLogin.password)
       .subscribe(
         (result) => {
-          console.log(result);
           this.user = result;
           if (this.user.role.toLowerCase().indexOf('admin') !== -1) {
-            this._router.navigateByUrl('/admin');
+            this._router.navigate(['/admin']);
           } else {
-            this._router.navigateByUrl('/');
+            this._router.navigate(['/']);
           }
-          localStorage.setItem(Constants.USER_LOGIN, JSON.stringify(this.user));
-          this.signIn.reset();
+          localStorage.setItem(
+            `${Constants.USER_LOGIN}`,
+            JSON.stringify(this.user)
+          );
         },
         (error) => {
           console.log(error.error);
-          this._router.navigateByUrl('/sign-in');
+          this._router.navigate(['/sign-in']);
         }
       );
+
+    this.signIn.reset();
   }
 
   ngOnDestroy(): void {

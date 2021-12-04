@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
-import { ProductAPI } from 'src/apis/product/product.api';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from 'src/models/Product';
 import { ProductManagementService } from '../../services/product-management.service';
 
@@ -18,7 +17,7 @@ export class UpdateProductComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _activatedRoute: ActivatedRoute,
-    private _productAPI: ProductAPI,
+    private _router: Router,
     private _productService: ProductManagementService
   ) {}
 
@@ -31,16 +30,14 @@ export class UpdateProductComponent implements OnInit {
   handleParams(): void {
     this._activatedRoute.params.subscribe((params: Params) => {
       let idProduct = parseInt(params['id']);
-      this._productService
-        .actionFetchProductById(this._productAPI, idProduct)
-        .subscribe(
-          (result: Product) => {
-            this.product = result;
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      this._productService.actionFetchProductById(idProduct).subscribe(
+        (result: Product) => {
+          this.product = result;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     });
   }
 
@@ -78,16 +75,14 @@ export class UpdateProductComponent implements OnInit {
       this.product.status = this.product.status;
     }
 
-    this._productService
-      .actionUpdatePartialProduct(this._productAPI, this.product)
-      .subscribe(
-        (result) => {
-          this.product = result;
-          this._activatedRoute.parent;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this._productService.actionUpdatePartialProduct(this.product).subscribe(
+      (result) => {
+        this.product = result;
+        this._router.navigateByUrl('/admin/products');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

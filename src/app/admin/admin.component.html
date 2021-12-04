@@ -30,7 +30,7 @@
       </li>
       <li>
         <a routerLink="/admin/products" [routerLinkActive]="'active'">
-          <i class="fa fa-clipboard-list"></i>
+          <i class="fab fa-product-hunt"></i>
           <span>Products</span>
         </a>
       </li>
@@ -58,11 +58,20 @@
       <input type="search" placeholder="Search here" />
     </div>
     <div class="user-wrapper">
-      <img src="../../../assets/images/admin/admin.jpg" alt="img" />
-      <div class="info">
-        <h4>John Doe</h4>
-        <small>Super admin</small>
-      </div>
+      <ng-container *ngIf="account; else noAccount">
+        <img [src]="account.avatar" alt="img" />
+        <div class="info">
+          <h4>{{ account.username }}</h4>
+          <small>{{ account.role }}</small>
+        </div>
+      </ng-container>
+      <ng-template #noAccount>
+        <img src="../../../assets/images/admin/admin.jpg" alt="img" />
+        <div class="info">
+          <h4>No account</h4>
+          <small>Super admin</small>
+        </div>
+      </ng-template>
     </div>
   </header>
   <main>

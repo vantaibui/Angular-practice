@@ -4,8 +4,6 @@
   (ngSubmit)="onUpdateProduct()"
 >
   <h3>Edit product</h3>
-  <p>{{ product.name }}</p>
-
   <mat-form-field class="form-field" appearance="outline">
     <mat-label>Name</mat-label>
     <input
@@ -42,7 +40,7 @@
     />
   </mat-form-field>
 
-  <mat-form-field class="form-field" appearance="outline">
+  <!-- <mat-form-field class="form-field" appearance="outline">
     <mat-label>Thumbnail</mat-label>
     <input
       type="text"
@@ -50,9 +48,9 @@
       placeholder=" "
       class="form-input"
       formControlName="thumbnail"
-      [(ngModel)]="product.price"
+      [(ngModel)]="product.thumbnail"
     />
-  </mat-form-field>
+  </mat-form-field> -->
 
   <div class="form-field input-radio" placeholder=" ">
     <label>Status </label>
