@@ -20,6 +20,12 @@ export class ShopManagementService {
     return this._productAPI.fetchAllProduct();
   }
 
+  actionFetchProductByCategoryCode(
+    categoryCode: string
+  ): Observable<Product[]> {
+    return this._productAPI.fetchProductByCode(categoryCode);
+  }
+
   actionFetchProductById(id: number): Observable<Product> {
     return this._productAPI.fetchProductById(id);
   }

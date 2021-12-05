@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryManagementService } from '../services/category-management.service';
+import { Category } from 'src/models/Category';
+import { CategoryManagementService } from '../../services/category-management.service';
 
 @Component({
   selector: 'app-add-category',
@@ -8,6 +9,8 @@ import { CategoryManagementService } from '../services/category-management.servi
   styleUrls: ['./add-category.component.scss'],
 })
 export class AddCategoryComponent implements OnInit {
+  private _category!: Category;
+
   public createCategoryForm!: FormGroup;
 
   constructor(
@@ -24,11 +27,19 @@ export class AddCategoryComponent implements OnInit {
       code: ['', [Validators.required]],
       name: ['', [Validators.required]],
       thumbnail: ['', [Validators.required]],
-      products: [],
     });
   }
 
   onCreateCategory(): void {
-    console.log(this.createCategoryForm.value);
+    let formValues = this.createCategoryForm.value;
+
+    this._categoryService.actionCreateCategory(formValues).subscribe(
+      (result: Category) => {
+        this._category = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

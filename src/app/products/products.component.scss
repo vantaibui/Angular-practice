@@ -189,15 +189,14 @@ $width-sidebar: 260px;
   .sidebar-seller {
     transition: all 0.8s;
     z-index: 10;
-    &:hover {
-      width: $width-sidebar !important;
-      .sidebar-brand {
-        h2 {
-          span:last-child {
-            display: inline-block !important;
-          }
+    width: $width-sidebar !important;
+    .sidebar-brand {
+      h2 {
+        span:last-child {
+          display: inline-block !important;
         }
       }
+
       .sidebar-menu {
         li {
           padding-left: 1rem;

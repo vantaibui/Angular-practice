@@ -20,6 +20,12 @@ export class CategoryAPI {
     return this._http.get<Category>(`${Constants.BASE_URL}/categories/${id}`);
   }
 
+  fetchCategoryByCode(code: string): Observable<Category[]> {
+    return this._http.get<Category[]>(
+      `${Constants.BASE_URL}/categories?code=${code}`
+    );
+  }
+
   createCategory(category: Category): Observable<Category> {
     return this._http.post<Category>(
       `${Constants.BASE_URL}/categories`,

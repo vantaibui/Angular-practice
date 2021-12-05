@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
 import { ShopManagementService } from '../../services/shop-management.service';
@@ -9,10 +10,12 @@ import { ShopManagementService } from '../../services/shop-management.service';
   templateUrl: './category-detail.component.html',
   styleUrls: ['./category-detail.component.scss'],
 })
-export class CategoryDetailComponent implements OnInit {
+export class CategoryDetailComponent implements OnInit, OnDestroy {
   public category: Category = new Category();
 
   public products: Product[] = [];
+
+  private _subscription!: Subscription;
 
   constructor(
     private _shopService: ShopManagementService,
@@ -27,15 +30,34 @@ export class CategoryDetailComponent implements OnInit {
     this._activatedRoute.params.subscribe((params: Params) => {
       let idCategory = parseInt(params['id']);
 
-      this._shopService.actionFetchCategoryById(idCategory).subscribe(
-        (result: Category) => {
-          this.category = result;
-          this.products = result.products;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      this._subscription = this._shopService
+        .actionFetchCategoryById(idCategory)
+        .subscribe(
+          (result: Category) => {
+            this.category = result;
+            this.loadProducts(this.category.code);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
     });
+  }
+
+  loadProducts(categoryCode: string): void {
+    this._shopService.actionFetchProductByCategoryCode(categoryCode).subscribe(
+      (result: Product[]) => {
+        this.products = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this._subscription) {
+      this._subscription.unsubscribe();
+    }
   }
 }

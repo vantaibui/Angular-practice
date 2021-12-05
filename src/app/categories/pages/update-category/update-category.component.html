@@ -1,0 +1,51 @@
+<form
+  class="login-form signup-form mat-typography"
+  [formGroup]="updateCategoryForm"
+  (ngSubmit)="onUpdateCategory()"
+>
+  <mat-dialog-content class="mat-typography">
+    <h3>update category</h3>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Code</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        class="form-input"
+        formControlName="code"
+        [(ngModel)]="category.code"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        class="form-input"
+        formControlName="name"
+        [(ngModel)]="category.name"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Thumbnail</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        class="form-input"
+        formControlName="thumbnail"
+        [(ngModel)]="category.thumbnail"
+      />
+    </mat-form-field>
+
+    <!-- <button type="submit" class="btn">Create</button> -->
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button type="submit">Update</button>
+  </mat-dialog-actions>
+</form>

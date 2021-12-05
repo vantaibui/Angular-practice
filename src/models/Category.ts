@@ -1,12 +1,9 @@
 import { AbstractModel } from './AbstractModel';
-import { Product } from './Product';
 
 export class Category extends AbstractModel {
   private _code!: string;
   private _name!: string;
   private _thumbnail!: string;
-
-  private _products: Product[] = [];
 
   set code(code: string) {
     this._code = code;
@@ -25,8 +22,5 @@ export class Category extends AbstractModel {
   }
   get thumbnail(): string {
     return this._thumbnail;
-  }
-  get products(): Product[] {
-    return this._products;
   }
 }

@@ -1,0 +1,50 @@
+<form
+  class="login-form signup-form mat-typography"
+  [formGroup]="createCategoryForm"
+  (ngSubmit)="onCreateCategory()"
+>
+  <mat-dialog-content class="mat-typography">
+    <h3>create category</h3>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Code</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        class="form-input"
+        formControlName="code"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        class="form-input"
+        formControlName="name"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Thumbnail</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        class="form-input"
+        formControlName="thumbnail"
+      />
+    </mat-form-field>
+
+    <!-- <button type="submit" class="btn">Create</button> -->
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button type="submit" [mat-dialog-close]="true" cdkFocusInitial>
+      Install
+    </button>
+  </mat-dialog-actions>
+</form>

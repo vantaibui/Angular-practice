@@ -19,18 +19,20 @@ import { SignInModule } from './sign-in/sign-in.module';
 
 import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 import { AuthorizationGuard } from './shared/helpers/authorization.guard';
+import { CategoriesModule } from './categories/categories.module';
 
 const libraries = [FormsModule, HttpClientModule];
 
-// const modules = [
-//   HomeModule,
-//   AboutUsModule,
-//   AdminModule,
-//   ProductsModule,
-//   UsersModule,
-//   SignInModule,
-//   SignUpModule,
-// ];
+const modules = [
+  HomeModule,
+  AboutUsModule,
+  AdminModule,
+  ProductsModule,
+  UsersModule,
+  SignInModule,
+  SignUpModule,
+  CategoriesModule,
+];
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +41,7 @@ const libraries = [FormsModule, HttpClientModule];
     FormsModule,
     HttpClientModule,
     ...libraries,
-    // ...modules,
+    ...modules,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],

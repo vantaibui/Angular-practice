@@ -22,6 +22,12 @@ export class ProductAPI {
     return this._http.get<Product>(`${Constants.BASE_URL}/products/${id}`);
   }
 
+  fetchProductByCode(categoryCode: string): Observable<Product[]> {
+    return this._http.get<Product[]>(
+      `${Constants.BASE_URL}/products?category=${categoryCode}`
+    );
+  }
+
   createProduct(product: any): Observable<Product> {
     return this._http.post<Product>(`${Constants.BASE_URL}/products`, product);
   }
