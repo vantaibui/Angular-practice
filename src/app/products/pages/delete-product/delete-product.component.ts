@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Product } from 'src/models/Product';
 import { ProductManagementService } from '../../services/product-management.service';
@@ -11,14 +12,19 @@ import { ProductManagementService } from '../../services/product-management.serv
 export class DeleteProductComponent implements OnInit {
   public productList: Product[] = [];
 
-  constructor(private _productService: ProductManagementService) {}
+  constructor(
+    private _productService: ProductManagementService,
+    public dialogRef: MatDialogRef<DeleteProductComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { idProduct: number }
+  ) {}
 
   ngOnInit(): void {}
 
   onDeleteProduct(id: number): void {
     this._productService.actionDeleteProduct(id).subscribe(
       (result) => {
-        this.updateDataAfterDelete(id);
+        console.log(result);
+        this.dialogRef.close(id);
       },
       (err) => {
         console.log(err);
@@ -26,12 +32,7 @@ export class DeleteProductComponent implements OnInit {
     );
   }
 
-  updateDataAfterDelete(id: number): void {
-    for (let i = 0; i < this.productList.length; i++) {
-      if (this.productList[i].id === id) {
-        this.productList.splice(i, 1);
-        break;
-      }
-    }
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

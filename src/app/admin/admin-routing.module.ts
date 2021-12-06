@@ -8,9 +8,9 @@ import { ProductsComponent } from '../products/products.component';
 import { AuthorizationGuard } from '../shared/helpers/authorization.guard';
 
 const routes: Routes = [
-  { path: 'admin', redirectTo: 'admin/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
-    path: 'admin',
+    path: '',
     component: AdminComponent,
     canActivate: [AuthorizationGuard],
     children: [{ path: 'dashboard', component: DashboardComponent }],

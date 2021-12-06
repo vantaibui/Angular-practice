@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Category } from 'src/models/Category';
 import { CategoryManagementService } from '../../services/category-management.service';
 
@@ -15,7 +16,8 @@ export class AddCategoryComponent implements OnInit {
 
   constructor(
     private _categoryService: CategoryManagementService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<AddCategoryComponent>
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class AddCategoryComponent implements OnInit {
     this._categoryService.actionCreateCategory(formValues).subscribe(
       (result: Category) => {
         this._category = result;
+        this.dialogRef.close(this._category);
       },
       (error) => {
         console.log(error);

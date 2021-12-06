@@ -9,11 +9,13 @@ import { AuthenticationService } from '../shared/helpers/authentication.service'
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  public account!: User;
+  // public account!: User;
 
-  constructor(private _authenticationService: AuthenticationService) {}
+  // constructor(private _authenticationService: AuthenticationService) {}
 
-  ngOnInit(): void {
-    this.account = this._authenticationService.currentUserValue;
-  }
+  // ngOnInit(): void {
+  //   this.account = this._authenticationService.currentUserValue;
+  // }
+  constructor() {}
+  ngOnInit(): void {}
 }

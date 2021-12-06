@@ -39,7 +39,7 @@ export class ProductManagementService {
       name: product.name,
       price: product.price,
       quantity: product.quantity,
-      thumbnail: product.thumbnail,
+      thumbnail: 'http://localhost:3000/uploads/images/product-1.jpg',
       category: product.category,
       status: product.status,
     };

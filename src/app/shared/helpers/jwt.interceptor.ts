@@ -9,17 +9,17 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AuthenticationService } from './authentication.service';
-
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
-  constructor(private _authenticationService: AuthenticationService) {}
+  private _userLogin: any = localStorage.getItem('user_login');
+
+  constructor() {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const currentUser = this._authenticationService.currentUserValue;
+    const currentUser = JSON.parse(this._userLogin);
 
     if (currentUser) {
       const headers = new HttpHeaders()

@@ -7,32 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// Module
-import { HomeModule } from './home/home.module';
-import { AboutUsModule } from './about-us/about-us.module';
-import { AdminModule } from './admin/admin.module';
-import { ProductsModule } from './products/products.module';
-import { UsersModule } from './users/users.module';
-
-import { SignUpModule } from './sign-up/sign-up.module';
-import { SignInModule } from './sign-in/sign-in.module';
-
 import { JwtInterceptor } from './shared/helpers/jwt.interceptor';
 import { AuthorizationGuard } from './shared/helpers/authorization.guard';
-import { CategoriesModule } from './categories/categories.module';
+import { CommonModule } from '@angular/common';
 
-const libraries = [FormsModule, HttpClientModule];
-
-const modules = [
-  HomeModule,
-  AboutUsModule,
-  AdminModule,
-  ProductsModule,
-  UsersModule,
-  SignInModule,
-  SignUpModule,
-  CategoriesModule,
-];
+const libraries = [CommonModule, FormsModule, HttpClientModule];
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,7 +20,6 @@ const modules = [
     FormsModule,
     HttpClientModule,
     ...libraries,
-    ...modules,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],

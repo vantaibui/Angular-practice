@@ -56,23 +56,56 @@ export class CategoryListComponent implements OnInit, AfterViewInit {
       );
   }
 
+  updateDataAfterActionCompleted(category: any, action: string): void {
+    for (let i = 0; i < this.categories.length; i++) {
+      if (action.indexOf('add') !== -1) {
+        if (this.categories[i].id === category.id) {
+          break;
+        } else {
+          this.categories.push(category);
+          this.dataSource.paginator = this.paginator;
+          break;
+        }
+      } else if (action.indexOf('edit') !== -1) {
+        if (this.categories[i].id === category.id) {
+          this.categories[i] = category;
+          this.dataSource.paginator = this.paginator;
+          break;
+        }
+      } else {
+        if (this.categories[i].id === category) {
+          this.categories.splice(i, 1);
+          this.dataSource.paginator = this.paginator;
+          break;
+        }
+      }
+    }
+  }
+
   openDialogCreate() {
     const dialogRef = this.dialog.open(AddCategoryComponent);
 
-    dialogRef.beforeClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result) => {
+      this.updateDataAfterActionCompleted(result, 'add');
     });
   }
 
   openDialogEdit(id: number) {
-    this.dialog.open(UpdateCategoryComponent, {
+    const dialogRef = this.dialog.open(UpdateCategoryComponent, {
       data: { id: id },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.updateDataAfterActionCompleted(result, 'edit');
     });
   }
 
   openDialogDelete(id: number) {
-    this.dialog.open(DeleteCategoryComponent, {
+    const dialogRef = this.dialog.open(DeleteCategoryComponent, {
       data: { id: id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.updateDataAfterActionCompleted(result, 'delete');
     });
   }
 

@@ -61,8 +61,7 @@ export class UpdateCategoryComponent implements OnInit {
     this._categoryService.actionUpdateCategory(this.category).subscribe(
       (result: Category) => {
         this.category = result;
-        this.dialogRef.close();
-        location.reload();
+        this.dialogRef.close(this.category);
       },
       (error) => {
         console.log(error);

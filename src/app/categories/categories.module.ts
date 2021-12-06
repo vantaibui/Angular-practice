@@ -11,6 +11,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoryManagementService } from './services/category-management.service';
 import { CategoryAPI } from 'src/apis/category/category.api';
+import { AdminLayoutModule } from '../shared/admin-layout/admin-layout.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CategoryAPI } from 'src/apis/category/category.api';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    AdminLayoutModule,
     CategoriesRoutingModule,
   ],
   providers: [CategoryAPI, CategoryManagementService],

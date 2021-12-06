@@ -13,6 +13,10 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Product } from 'src/models/Product';
 import { ProductManagementService } from '../../services/product-management.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from '../add-product/add-product.component';
+import { UpdateProductComponent } from '../update-product/update-product.component';
+import { DeleteProductComponent } from '../delete-product/delete-product.component';
 
 @Component({
   selector: 'app-product-list',
@@ -43,7 +47,8 @@ export class ProductListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     private _router: Router,
-    private _productService: ProductManagementService
+    private _productService: ProductManagementService,
+    public dialog: MatDialog
   ) {
     this.productList = [];
   }
@@ -69,29 +74,60 @@ export class ProductListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  onDeleteProduct(id: number): void {
-    this._productService.actionDeleteProduct(id).subscribe(
-      (result) => {
-        this.updateDataAfterDelete(id);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  updateDataAfterDelete(id: number): void {
+  updateDataAfterActionCompleted(product: any, action: string): void {
     for (let i = 0; i < this.productList.length; i++) {
-      if (this.productList[i].id === id) {
-        this.productList.splice(i, 1);
-        this.dataSource.paginator = this.paginator;
-        break;
+      if (action.indexOf('add') !== -1) {
+        if (this.productList[i].id === product.id) {
+          break;
+        } else {
+          this.productList.push(product);
+          this.dataSource.paginator = this.paginator;
+          break;
+        }
+      } else if (action.indexOf('edit') !== -1) {
+        if (this.productList[i].id === product.id) {
+          this.productList[i] = product;
+          this.dataSource.paginator = this.paginator;
+          break;
+        }
+      } else {
+        if (this.productList[i].id === product) {
+          this.productList.splice(i, 1);
+          this.dataSource.paginator = this.paginator;
+          break;
+        }
       }
     }
   }
 
-  onEditProduct(id: number): void {
-    this._router.navigate(['/admin/products/editProduct', id]);
+  openDialogCreate(): void {
+    const dialogRef = this.dialog.open(AddProductComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      this.updateDataAfterActionCompleted(result, 'add');
+    });
+  }
+
+  openDialogEdit(id: number): void {
+    const dialogRef = this.dialog.open(UpdateProductComponent, {
+      data: { idProduct: id },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.updateDataAfterActionCompleted(result, 'edit');
+    });
+  }
+
+  openDialogDelete(id: number): void {
+    const dialogRef = this.dialog.open(DeleteProductComponent, {
+      data: { idProduct: id },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.updateDataAfterActionCompleted(result, 'delete');
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { User } from 'src/models/User';
+import { AuthenticationService } from '../../helpers/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,17 @@ export class HeaderComponent implements OnInit {
   public activeFormCart: boolean = false;
   public activeFormSignIn: boolean = false;
 
-  constructor() {}
+  private userLogin: any = localStorage.getItem('user_login');
 
-  ngOnInit(): void {}
+  public account!: User;
+
+  constructor(private _authenticationService: AuthenticationService) {}
+
+  ngOnInit(): void {
+    this.account = JSON.parse(this.userLogin);
+  }
+
+  logout(): void {
+    this._authenticationService.logout();
+  }
 }

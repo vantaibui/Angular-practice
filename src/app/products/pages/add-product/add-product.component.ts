@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Category } from 'src/models/Category';
 
@@ -22,9 +23,10 @@ export class AddProductComponent implements OnInit, OnDestroy {
   public status: Boolean = true;
 
   constructor(
-    private _formBuilder: FormBuilder,
     private _router: Router,
-    private _productService: ProductManagementService
+    private _formBuilder: FormBuilder,
+    private _productService: ProductManagementService,
+    public dialogRef: MatDialogRef<AddProductComponent>
   ) {
     this._product = new Product();
   }
@@ -39,7 +41,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required]],
       price: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
-      thumbnail: 'http://dummyimage.com/203x100.png/ff4444/ffffff',
+      thumbnail: ['', [Validators.required]],
       category: ['', [Validators.required]],
       status: ['', [Validators.required]],
     });
@@ -61,7 +63,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this._productService.actionCreateProduct(this._product).subscribe(
       (result) => {
         this._product = result;
-        this._router.navigateByUrl('/admin/products');
+        // this._router.navigateByUrl('/admin/products');
+        this.dialogRef.close(this._product);
       },
       (error) => {
         console.log(error);

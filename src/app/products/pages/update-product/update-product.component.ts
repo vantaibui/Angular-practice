@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
 import { ProductManagementService } from '../../services/product-management.service';
 
@@ -12,33 +14,36 @@ import { ProductManagementService } from '../../services/product-management.serv
 export class UpdateProductComponent implements OnInit {
   public product!: Product;
 
+  public categories!: Category[];
+
   public editProductForm!: FormGroup;
 
   constructor(
-    private _formBuilder: FormBuilder,
-    private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _productService: ProductManagementService
+    private _activatedRoute: ActivatedRoute,
+    private _formBuilder: FormBuilder,
+    private _productService: ProductManagementService,
+    public dialogRef: MatDialogRef<UpdateProductComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { idProduct: number }
   ) {}
 
   ngOnInit(): void {
     this.product = new Product();
-    this.handleParams();
+    this.loadData();
+    this.loadCategories();
     this.createFormEdit();
   }
 
-  handleParams(): void {
-    this._activatedRoute.params.subscribe((params: Params) => {
-      let idProduct = parseInt(params['id']);
-      this._productService.actionFetchProductById(idProduct).subscribe(
-        (result: Product) => {
-          this.product = result;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    });
+  loadData(): void {
+    let idProduct: number = this.data.idProduct;
+    this._productService.actionFetchProductById(idProduct).subscribe(
+      (result: Product) => {
+        this.product = result;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   createFormEdit(): void {
@@ -47,6 +52,7 @@ export class UpdateProductComponent implements OnInit {
       price: [''],
       quantity: [''],
       thumbnail: [''],
+      category: [''],
       status: [''],
     });
   }
@@ -78,7 +84,18 @@ export class UpdateProductComponent implements OnInit {
     this._productService.actionUpdatePartialProduct(this.product).subscribe(
       (result) => {
         this.product = result;
-        this._router.navigateByUrl('/admin/products');
+        this.dialogRef.close(this.product);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  loadCategories(): void {
+    this._productService.actionFetchAllCategory().subscribe(
+      (result) => {
+        this.categories = result;
       },
       (error) => {
         console.log(error);

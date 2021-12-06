@@ -10,12 +10,12 @@ import { AuthorizationGuard } from '../shared/helpers/authorization.guard';
 
 export const routes: Routes = [
   {
-    path: 'admin/products',
-    redirectTo: 'admin/products/list',
+    path: '',
+    redirectTo: 'list',
     pathMatch: 'full',
   },
   {
-    path: 'admin/products',
+    path: '',
     component: ProductsComponent,
     canActivate: [AuthorizationGuard],
     children: [

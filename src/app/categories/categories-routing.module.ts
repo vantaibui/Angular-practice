@@ -9,14 +9,14 @@ import { CategoryListComponent } from './pages/category-list/category-list.compo
 
 const routes: Routes = [
   {
-    path: 'admin/categories',
-    redirectTo: 'admin/categories/list',
+    path: '',
+    redirectTo: 'list',
     pathMatch: 'full',
   },
   {
-    path: 'admin/categories',
+    path: '',
     component: CategoriesComponent,
-    // canActivate: [AuthorizationGuard],
+    canActivate: [AuthorizationGuard],
     children: [
       { path: 'list', component: CategoryListComponent },
       { path: 'addCategory', component: AddCategoryComponent },

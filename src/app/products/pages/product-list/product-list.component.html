@@ -2,7 +2,7 @@
   mat-raised-button
   color="primary"
   class="btn-material-add"
-  (click)="openForm = !openForm"
+  (click)="openDialogCreate()"
 >
   <mat-icon>add</mat-icon>
   Add product
@@ -10,6 +10,15 @@
 <!-- routerLink="/admin/products/addProduct" -->
 
 <div class="mat-elevation-z8">
+  <mat-form-field appearance="standard">
+    <mat-label>Search ...</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. ium"
+      #input
+    />
+  </mat-form-field>
   <table mat-table [dataSource]="dataSource">
     <!-- Position Column -->
     <ng-container matColumnDef="id">
@@ -87,14 +96,14 @@
         <button
           mat-raised-button
           color="primary"
-          [routerLink]="['/admin/products/editProduct', product.id]"
+          (click)="openDialogEdit(product.id)"
         >
           <mat-icon>edit</mat-icon>
         </button>
         <button
           mat-raised-button
           color="warn"
-          (click)="onDeleteProduct(product.id)"
+          (click)="openDialogDelete(product.id)"
         >
           <mat-icon>delete</mat-icon>
         </button>
@@ -114,5 +123,3 @@
   >
   </mat-paginator>
 </div>
-
-<app-add-product [class.form-add-product]="openForm"></app-add-product>

@@ -13,6 +13,7 @@ import { AddProductComponent } from './pages/add-product/add-product.component';
 import { DeleteProductComponent } from './pages/delete-product/delete-product.component';
 import { UpdateProductComponent } from './pages/update-product/update-product.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
+import { AdminLayoutModule } from '../shared/admin-layout/admin-layout.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProductListComponent } from './pages/product-list/product-list.componen
     CommonModule,
     MaterialModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    AdminLayoutModule,
     ProductsRoutingsModule,
   ],
   providers: [ProductAPI, ProductManagementService],

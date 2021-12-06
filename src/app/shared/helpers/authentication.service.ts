@@ -16,7 +16,7 @@ export class AuthenticationService {
   private _userLogin: any = localStorage.getItem(`${Constants.USER_LOGIN}`);
 
   constructor() {
-    if (this._userLogin) {
+    if (!this._userLogin) {
       this.currentUserSubject = new BehaviorSubject<User>(
         JSON.parse(this._userLogin)
       );
@@ -29,5 +29,24 @@ export class AuthenticationService {
       return this.currentUserSubject.value;
     }
     return this.currentUserSubject;
+  }
+
+  // private _userLogin: any = localStorage.getItem(`${Constants.USER_LOGIN}`);
+  // private currentUser: User = new User();
+
+  // constructor() {
+  //   if (this._userLogin) {
+  //     this.currentUser = JSON.parse(this._userLogin);
+  //   }
+  // }
+
+  // public get currentUserValue(): User {
+  //   console.log(this.currentUser);
+  //   return this.currentUser;
+  // }
+
+  logout(): void {
+    localStorage.removeItem(`${Constants.USER_LOGIN}`);
+    location.reload();
   }
 }

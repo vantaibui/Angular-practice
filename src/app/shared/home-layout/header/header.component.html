@@ -46,7 +46,38 @@
         activeFormSearch = false
       "
     ></div>
-    <div class="fas fa-user" id="login-btn" routerLink="/sign-in"></div>
+    <ng-container *ngIf="account; else noAccount">
+      <div class="user-profile">
+        <div class="profile">
+          <img [src]="account.avatar" alt="account.avatar" />
+        </div>
+        <div class="menu active">
+          <h3>
+            Some Famous <br />
+            <span>Website</span>
+          </h3>
+          <ul>
+            <li>
+              <a href="#"><i class="fal fa-user-circle"></i>My profile</a>
+            </li>
+            <li>
+              <a href="#"><i class="fal fa-user-edit"></i>Edit profile</a>
+            </li>
+            <li>
+              <a href="#"><i class="fal fa-question-circle"></i>Help</a>
+            </li>
+            <li>
+              <a (click)="logout()"
+                ><i class="fal fa-sign-out-alt"></i>Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div></ng-container
+    >
+    <ng-template #noAccount>
+      <div class="fas fa-user" id="login-btn" routerLink="/sign-in"></div>
+    </ng-template>
   </div>
   <form class="search-form" [class.active]="activeFormSearch">
     <input

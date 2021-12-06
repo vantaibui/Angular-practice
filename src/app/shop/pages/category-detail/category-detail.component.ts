@@ -30,18 +30,22 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     this._activatedRoute.params.subscribe((params: Params) => {
       let idCategory = parseInt(params['id']);
 
-      this._subscription = this._shopService
-        .actionFetchCategoryById(idCategory)
-        .subscribe(
-          (result: Category) => {
-            this.category = result;
-            this.loadProducts(this.category.code);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      this.loadCategoryById(idCategory);
     });
+  }
+
+  loadCategoryById(idCategory: number): void {
+    this._subscription = this._shopService
+      .actionFetchCategoryById(idCategory)
+      .subscribe(
+        (result: Category) => {
+          this.category = result;
+          this.loadProducts(this.category.code);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   loadProducts(categoryCode: string): void {

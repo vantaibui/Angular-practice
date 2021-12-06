@@ -19,10 +19,6 @@ export class UsersAPI {
     return this._http.post<User>(`${Constants.BASE_URL}/register`, user);
   }
 
-  logout(): void {
-    localStorage.removeItem(`${Constants.USER_LOGIN}`);
-  }
-
   fetchAllUser(): Observable<User> {
     return this._http.get<User>(`${Constants.BASE_URL}/users`);
   }

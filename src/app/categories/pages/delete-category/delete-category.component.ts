@@ -21,8 +21,7 @@ export class DeleteCategoryComponent implements OnInit {
     this._categoryService.actionDeleteCategory(id).subscribe(
       (result) => {
         console.log(result);
-        // this.dialogRef.
-        location.reload();
+        this.dialogRef.close(id);
       },
       (error) => {
         console.log(error);
