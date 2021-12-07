@@ -1,0 +1,125 @@
+<app-header></app-header>
+
+<div class="heading">
+  <h1>shopping cart</h1>
+  <p><a routerLink="/">shop >> </a> shopping cart</p>
+</div>
+
+<section class="shopping-cart">
+  <div class="grid">
+    <div class="grid__row">
+      <div class="grid__full-width">
+        <div class="shopping-cart__table">
+          <table class="cart-table">
+            <thead class="cart-table__head">
+              <tr class="cart-table__head-row">
+                <th class="cart-table__head-item">products</th>
+                <th class="cart-table__head-price">price</th>
+                <th class="cart-table__head-quantity">quantity</th>
+                <th class="cart-table__head-total">total</th>
+                <th class="cart-table__head-action"></th>
+              </tr>
+            </thead>
+            <tbody class="cart-table__body">
+              <ng-container *ngFor="let element of cartData">
+                <tr class="cart-table__body-row">
+                  <td class="cart-table__body-item">
+                    <img
+                      [src]="element.product.thumbnail"
+                      [alt]="element.product.name"
+                      class="item__img"
+                    />
+                    <h5 class="item__name">{{ element.product.name }}</h5>
+                  </td>
+                  <td class="cart-table__body-price">
+                    {{
+                      element.product.price
+                        | currency: "$":"symbol-narrow":"1.2-3"
+                    }}
+                  </td>
+                  <td class="cart-table__body-quantity">
+                    <div class="quantity">
+                      <div class="quantity__inner">
+                        <span
+                          class="quantity__btn"
+                          (click)="
+                            onUpdateProductInCart(
+                              element.product,
+                              (element.quantity =
+                                element.quantity > 1
+                                  ? element.quantity - 1
+                                  : element.quantity)
+                            )
+                          "
+                        >
+                          -
+                        </span>
+                        <span class="quantity__value">
+                          {{ element.quantity }}</span
+                        >
+                        <span
+                          class="quantity__btn"
+                          (click)="
+                            onUpdateProductInCart(
+                              element.product,
+                              (element.quantity = element.quantity + 1)
+                            )
+                          "
+                        >
+                          +
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="cart-table__body-total">
+                    {{
+                      element.product.price * element.quantity
+                        | currency: "$":"symbol-narrow":"1.2-3"
+                    }}
+                  </td>
+                  <td class="cart-table__body-delete">
+                    <i
+                      class="fa fa-times cart-table__body-icon"
+                      (click)="onDeleteProductInCart(element.product)"
+                    ></i>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="grid__row grid__row--modifier">
+      <div class="grid-column-6">
+        <div class="shopping-cart__discount">
+          <h5>discount codes</h5>
+          <form class="shopping-cart__discount-form">
+            <input
+              type="text"
+              class="discount-form__input"
+              placeholder="Enter your coupon code"
+            />
+            <button class="discount-form__btn">apply coupon</button>
+          </form>
+        </div>
+      </div>
+      <div class="grid-column-6">
+        <div class="shopping-cart__checkout">
+          <h5>cart total</h5>
+          <ul class="checkout__menu">
+            <li class="checkout__total">
+              <span class="checkout__subtotal-title">Total</span>
+              <span class="checkout__subtotal-total"
+                >{{ total | currency: "$":"symbol-narrow":"1.2-3" }}
+              </span>
+            </li>
+          </ul>
+          <a href="" class="checkout__btn">Proceed to checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

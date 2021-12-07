@@ -1,8 +1,279 @@
-<p [style]="{ marginTop: '200px' }">product-detail works!</p>
+<!-- <p [style]="{ marginTop: '200px' }">product-detail works!</p>
+
+<p>{{ product.name }}</p> -->
 
 <div class="heading">
-  <h1>our shop</h1>
-  <p><a routerLink="/">home >> </a> shop</p>
+  <h1>Category package</h1>
+  <p><a routerLink="/">shop >> </a> {{ product.name }}</p>
 </div>
+<!-- Product detail info -->
+<section class="product-detail-info">
+  <div class="row">
+    <div class="col-6 col-sm-12">
+      <div class="product-detail__pic">
+        <img
+          class="product-detail__img"
+          [src]="product.thumbnail"
+          [alt]="product.name"
+        />
+      </div>
+    </div>
+    <div class="col-6 col-sm-12">
+      <div class="product-detail__content">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <div class="product-evaluation">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <div class="product-price">
+          {{ product.price | currency: "$":"symbol-narrow":"1.2-3" }}
+        </div>
+        <p class="product-desc">
+          Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+          Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+          Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula
+          elementum sed sit amet dui. Proin eget tortor risus.
+        </p>
+        <div class="product-actions">
+          <div class="quantity">
+            <button
+              class="btn-quantity"
+              (click)="
+                quantityPurchased =
+                  quantityPurchased > 1
+                    ? quantityPurchased - 1
+                    : quantityPurchased
+              "
+            >
+              -
+            </button>
+            <input
+              type="text"
+              class="input-quantity"
+              [value]="quantityPurchased"
+              readonly
+            />
+            <button
+              class="btn-quantity"
+              (click)="quantityPurchased = quantityPurchased + 1"
+            >
+              +
+            </button>
+          </div>
+          <button
+            class="btn-add"
+            (click)="onAddProductToCart(product, quantityPurchased)"
+          >
+            add to cart
+          </button>
+        </div>
+        <div class="product-info">
+          <ul>
+            <li>
+              <b>Availability</b>
+              <span class="text-capitalize">In Stock</span>
+            </li>
+            <li>
+              <b>Shipping</b>
+              <span>01 day shipping. </span>
+            </li>
+            <li>
+              <b>Weight</b>
+              <span>0.5 kg</span>
+            </li>
+            <li>
+              <b>Share on</b>
+              <span>
+                <a href=""><i class="fab fa-facebook-f"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-pinterest"></i></a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>{{ product.name }}</p>
+<!-- Product detail tab -->
+<section class="product-detail-tab">
+  <mat-tab-group
+    mat-stretch-tabs
+    class="example-stretched-tabs mat-elevation-z4"
+  >
+    <mat-tab label="Description">
+      <div class="product-detail-tab__description">
+        <h5>Products Infomation</h5>
+        <p>
+          Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+          Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+          Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac
+          diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum
+          congue leo eget malesuada. Vivamus suscipit tortor eget felis
+          porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et,
+          porttitor at sem. Praesent sapien massa, convallis a pellentesque nec,
+          egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum
+          sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
+          et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet
+          aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.
+          Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+          blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies
+          ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum
+          porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget
+          tincidunt nibh pulvinar a.
+        </p>
+      </div>
+    </mat-tab>
+    <mat-tab label="Information">
+      <div class="product-detail-tab__description">
+        <h5>Products Infomation</h5>
+        <p>
+          Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+          Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+          Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac
+          diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum
+          congue leo eget malesuada. Vivamus suscipit tortor eget felis
+          porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et,
+          porttitor at sem. Praesent sapien massa, convallis a pellentesque nec,
+          egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum
+          sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
+          et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet
+          aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.
+          Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+          blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies
+          ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum
+          porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget
+          tincidunt nibh pulvinar a.
+        </p>
+      </div>
+    </mat-tab>
+    <mat-tab label="Reviews">
+      <div class="product-detail-tab__description">
+        <h5>Products Infomation</h5>
+        <p>
+          Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+          Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
+          Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac
+          diam sit amet quam vehicula elementum sed sit amet dui. Donec rutrum
+          congue leo eget malesuada. Vivamus suscipit tortor eget felis
+          porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et,
+          porttitor at sem. Praesent sapien massa, convallis a pellentesque nec,
+          egestas non nisi. Vestibulum ac diam sit amet quam vehicula elementum
+          sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
+          et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet
+          aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus.
+          Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+          blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies
+          ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum
+          porta. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget
+          tincidunt nibh pulvinar a.
+        </p>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</section>
+
+<!-- Products -->
+<section class="products">
+  <h1 class="title">
+    related <span>products</span> <a href="#">view all >></a>
+  </h1>
+
+  <div class="box-container">
+    <div class="box">
+      <div class="icons">
+        <a href="#" class="fas fa-shopping-cart"></a>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-eye"></a>
+      </div>
+      <div class="image">
+        <img src="../../../../assets/images/home/product-1.jpg" alt="" />
+      </div>
+      <div class="content">
+        <h3>organic food</h3>
+        <div class="price">$18.99</div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="icons">
+        <a href="#" class="fas fa-shopping-cart"></a>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-eye"></a>
+      </div>
+      <div class="image">
+        <img src="../../../../assets/images/home/product-2.jpg" alt="" />
+      </div>
+      <div class="content">
+        <h3>organic food</h3>
+        <div class="price">$18.99</div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="icons">
+        <a href="#" class="fas fa-shopping-cart"></a>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-eye"></a>
+      </div>
+      <div class="image">
+        <img src="../../../../assets/images/home/product-1.jpg" alt="" />
+      </div>
+      <div class="content">
+        <h3>organic food</h3>
+        <div class="price">$18.99</div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="icons">
+        <a href="#" class="fas fa-shopping-cart"></a>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-eye"></a>
+      </div>
+      <div class="image">
+        <img src="../../../../assets/images/home/product-2.jpg" alt="" />
+      </div>
+      <div class="content">
+        <h3>organic food</h3>
+        <div class="price">$18.99</div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

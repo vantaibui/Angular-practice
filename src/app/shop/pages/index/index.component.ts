@@ -1,9 +1,17 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
 import { ShopManagementService } from '../../services/shop-management.service';
+
+import * as Constants from 'src/constants';
 
 @Component({
   selector: 'app-index',
@@ -51,6 +59,10 @@ export class IndexComponent implements OnInit, OnDestroy {
       '/shop/categories',
       { queryParams: { code: code } },
     ]);
+  }
+
+  onAddProductToCart(product: Product, quantity: number): void {
+    this._shopService.actionAddProductToCart(product, quantity);
   }
 
   ngOnDestroy(): void {

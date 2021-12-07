@@ -20,8 +20,8 @@
       >About</a
     >
     <a class="navbar-link" [routerLink]="['/reviews']" routerLinkActive="active"
-      >Review</a
-    >
+      >Review
+    </a>
     <a class="navbar-link" [routerLink]="['/blogs']" routerLinkActive="active"
       >Blog</a
     >
@@ -100,7 +100,7 @@
       </div>
     </div>
     <h3 class="total">Total: <span>56.97</span></h3>
-    <a href="" class="btn">checkout cart</a>
+    <a [routerLink]="['/shopping-cart']" class="btn">checkout cart</a>
   </div>
   <form class="login-form" [class.active]="activeFormSignIn">
     <h3>log in</h3>

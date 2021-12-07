@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cart } from 'src/models/Cart';
 import { User } from 'src/models/User';
 import { AuthenticationService } from '../../helpers/authentication.service';
 
@@ -15,6 +16,8 @@ export class HeaderComponent implements OnInit {
   private userLogin: any = localStorage.getItem('user_login');
 
   public account!: User;
+
+  @Input('cartData') cartData: any;
 
   constructor(private _authenticationService: AuthenticationService) {}
 

@@ -43,17 +43,5 @@ export class AuthorizationGuard implements CanActivate {
       this._router.navigate(['/sign-in']);
       return false;
     }
-
-    // const currentUser = this._authenticationService.currentUserValue;
-    // if (currentUser) {
-    //   if (currentUser.role.toLowerCase().indexOf('admin') === -1) {
-    //     this._router.navigateByUrl('/');
-    //     return false;
-    //   }
-    //   return true;
-    // } else {
-    //   this._router.navigate(['/sign-in']);
-    //   return false;
-    // }
   }
 }

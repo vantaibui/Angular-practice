@@ -8,11 +8,17 @@ import { AuthenticationService } from '../helpers/authentication.service';
   styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent implements OnInit {
+  private userLogin: any = localStorage.getItem('user_login');
+
   public account!: User;
 
   constructor(private _authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
-    this.account = this._authenticationService.currentUserValue;
+    this.account = JSON.parse(this.userLogin);
+  }
+
+  logout(): void {
+    this._authenticationService.logout();
   }
 }

@@ -11,39 +11,19 @@ import * as Constants from '../../../constants';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private currentUserSubject!: BehaviorSubject<User>;
-  private currentUser!: Observable<User>;
   private _userLogin: any = localStorage.getItem(`${Constants.USER_LOGIN}`);
+  private currentUser: User = new User();
 
   constructor() {
-    if (!this._userLogin) {
-      this.currentUserSubject = new BehaviorSubject<User>(
-        JSON.parse(this._userLogin)
-      );
-      this.currentUser = this.currentUserSubject.asObservable();
+    if (this._userLogin) {
+      this.currentUser = JSON.parse(this._userLogin);
     }
   }
 
   public get currentUserValue(): User {
-    if (this.currentUserSubject) {
-      return this.currentUserSubject.value;
-    }
-    return this.currentUserSubject;
+    console.log(this.currentUser);
+    return this.currentUser;
   }
-
-  // private _userLogin: any = localStorage.getItem(`${Constants.USER_LOGIN}`);
-  // private currentUser: User = new User();
-
-  // constructor() {
-  //   if (this._userLogin) {
-  //     this.currentUser = JSON.parse(this._userLogin);
-  //   }
-  // }
-
-  // public get currentUserValue(): User {
-  //   console.log(this.currentUser);
-  //   return this.currentUser;
-  // }
 
   logout(): void {
     localStorage.removeItem(`${Constants.USER_LOGIN}`);

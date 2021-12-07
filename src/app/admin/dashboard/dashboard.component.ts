@@ -44,7 +44,6 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadData();
-    console.log(this.productList);
   }
 
   loadData(): void {

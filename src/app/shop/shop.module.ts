@@ -8,9 +8,21 @@ import { FooterModule } from '../shared/home-layout/footer/footer.module';
 import { IndexComponent } from './pages/index/index.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { CategoryDetailComponent } from './pages/category-detail/category-detail.component';
+import { MaterialModule } from '../shared/material/material.module';
 
 @NgModule({
-  declarations: [ShopComponent, IndexComponent, ProductDetailComponent, CategoryDetailComponent],
-  imports: [CommonModule, ShopRoutingModule, HeaderModule, FooterModule],
+  declarations: [
+    ShopComponent,
+    IndexComponent,
+    ProductDetailComponent,
+    CategoryDetailComponent,
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ShopRoutingModule,
+    HeaderModule,
+    FooterModule,
+  ],
 })
 export class ShopModule {}

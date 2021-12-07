@@ -26,6 +26,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./blogs/blogs.module').then((m) => m.BlogsModule),
   },
+  {
+    path: 'shopping-cart',
+    loadChildren: () =>
+      import('./shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule
+      ),
+  },
 
   // Admin
   {

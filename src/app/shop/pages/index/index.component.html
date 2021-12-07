@@ -27,11 +27,14 @@
     <ng-container *ngFor="let product of products; let index = index">
       <div class="box">
         <div class="icons">
-          <a href="#" class="fas fa-shopping-cart"></a>
+          <a
+            class="fas fa-shopping-cart"
+            (click)="onAddProductToCart(product, 1)"
+          ></a>
           <a href="#" class="fas fa-heart"></a>
           <a
-            [routerLink]="['/shop/products', product.id]"
             class="fas fa-eye"
+            [routerLink]="['/shop/products', product.id]"
           ></a>
         </div>
         <div class="image">

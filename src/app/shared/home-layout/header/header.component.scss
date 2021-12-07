@@ -87,7 +87,7 @@
         right: -50%;
         padding: 10px 20px;
         background: #fff;
-        width: 240px;
+        width: 220px;
         border: $border;
         border-radius: 15px;
         box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -131,7 +131,7 @@
         }
         ul {
           li {
-            padding: 10px 0;
+            padding: 10px 4px;
             border-top: 1px solid $green;
             a {
               display: flex;
@@ -140,6 +140,7 @@
 
               text-decoration: none;
               color: #555;
+              font-size: 1.4rem;
               font-weight: 500;
               transition: all 0.2s;
               &:hover {
@@ -149,9 +150,9 @@
                 }
               }
               i {
-                width: 3.6rem;
+                width: 3rem;
                 max-width: 100%;
-                font-size: 3rem;
+                font-size: 2.4rem;
                 margin-right: 1rem;
                 opacity: 0.5;
                 transition: all 0.2s;

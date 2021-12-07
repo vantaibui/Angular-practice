@@ -59,6 +59,10 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
     );
   }
 
+  onAddProductToCart(product: Product, quantity: number): void {
+    this._shopService.actionAddProductToCart(product, quantity);
+  }
+
   ngOnDestroy(): void {
     if (this._subscription) {
       this._subscription.unsubscribe();
