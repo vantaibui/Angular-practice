@@ -49,14 +49,32 @@
         color: $green;
       }
     }
+    .icon-cart {
+      position: relative;
+      span {
+        position: absolute;
+        top: -52%;
+        right: -16%;
+        transform: translate(50%, -50%);
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: $green;
+        font-size: 1.3rem;
+        color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
     .user-profile {
       position: relative;
-      margin-left: -1.4px;
+      margin-left: 0;
       &:before {
         position: absolute;
         content: "";
         top: 100%;
-        right: -50%;
+        right: -40%;
         width: 240px;
         height: 40px;
         background: transparent;
@@ -84,7 +102,7 @@
       .menu {
         position: absolute;
         top: 150%;
-        right: -50%;
+        right: -40%;
         padding: 10px 20px;
         background: #fff;
         width: 220px;

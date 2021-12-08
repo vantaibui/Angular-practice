@@ -55,22 +55,35 @@
       <i class="fa fa-search"></i>
       <input type="search" placeholder="Search here" />
     </div>
-    <div class="user-wrapper">
-      <ng-container *ngIf="account; else noAccount">
-        <img [src]="account.avatar" alt="img" />
-        <div class="info">
-          <h4>{{ account.username }}</h4>
-          <small>{{ account.role }}</small>
+    <ng-container *ngIf="account">
+      <div class="user-profile">
+        <div class="profile">
+          <img [src]="account.avatar" alt="account.avatar" />
         </div>
-      </ng-container>
-      <ng-template #noAccount>
-        <img src="../../../assets/images/admin/admin.jpg" alt="img" />
-        <div class="info">
-          <h4>No account</h4>
-          <small>Super admin</small>
+        <div class="menu active">
+          <h3>
+            Some Famous <br />
+            <span>Website</span>
+          </h3>
+          <ul>
+            <li>
+              <a href="#"><i class="fal fa-user-circle"></i>My profile</a>
+            </li>
+            <li>
+              <a href="#"><i class="fal fa-user-edit"></i>Edit profile</a>
+            </li>
+            <li>
+              <a href="#"><i class="fal fa-question-circle"></i>Help</a>
+            </li>
+            <li>
+              <a (click)="logout()"
+                ><i class="fal fa-sign-out-alt"></i>Logout</a
+              >
+            </li>
+          </ul>
         </div>
-      </ng-template>
-    </div>
+      </div></ng-container
+    >
   </header>
   <main>
     <router-outlet></router-outlet>

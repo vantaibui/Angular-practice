@@ -21,7 +21,11 @@ export class ProductDetailComponent implements OnInit {
 
   public quantityPurchased: number = 1;
 
-  public cartData: Cart[] = [];
+  private _cart: any = localStorage.getItem('cart');
+
+  public cartData: Cart[] = JSON.parse(this._cart)
+    ? JSON.parse(this._cart)
+    : [];
 
   constructor(
     private _shopService: ShopManagementService,
@@ -32,7 +36,6 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleParams();
-    this.cartData = this._shopService.cartData;
   }
 
   handleParams(): void {

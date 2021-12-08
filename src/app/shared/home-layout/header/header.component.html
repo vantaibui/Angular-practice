@@ -31,21 +31,17 @@
     <div
       class="fas fa-search"
       id="search-btn"
-      (click)="
-        activeFormSearch = !activeFormSearch;
-        activeFormSignIn = false;
-        activeFormCart = false
-      "
+      (click)="activeFormSearch = !activeFormSearch"
     ></div>
     <div
-      class="fas fa-shopping-cart"
+      class="fas fa-shopping-cart icon-cart"
       id="cart-btn"
-      (click)="
-        activeFormCart = !activeFormCart;
-        activeFormSignIn = false;
-        activeFormSearch = false
-      "
-    ></div>
+      routerLink="/shopping-cart"
+    >
+      <ng-container *ngIf="quantityProductInCart > 0">
+        <span>{{ quantityProductInCart }}</span></ng-container
+      >
+    </div>
     <ng-container *ngIf="account; else noAccount">
       <div class="user-profile">
         <div class="profile">
@@ -88,7 +84,9 @@
     />
     <label for="search-box" class="far fa-search"></label>
   </form>
-  <div class="shopping-cart" [class.active]="activeFormCart">
+
+  <!-- Cart -->
+  <div class="shopping-cart">
     <div class="box">
       <i class="fas fa-times"></i>
       <img src="../../assets/images/home/cart-1.jpg" alt="image" />
@@ -102,7 +100,7 @@
     <h3 class="total">Total: <span>56.97</span></h3>
     <a [routerLink]="['/shopping-cart']" class="btn">checkout cart</a>
   </div>
-  <form class="login-form" [class.active]="activeFormSignIn">
+  <form class="login-form">
     <h3>log in</h3>
     <input type="text" placeholder="Enter username/ email ..." class="box" />
     <input type="password" placeholder="Enter password ..." class="box" />

@@ -7,11 +7,15 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+// Model
 import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
-import { ShopManagementService } from '../../services/shop-management.service';
+import { Cart } from 'src/models/Cart';
 
-import * as Constants from 'src/constants';
+// Service
+import { ShopManagementService } from '../../services/shop-management.service';
+import { CommonService } from 'src/app/shared/helpers/common.service';
 
 @Component({
   selector: 'app-index',
@@ -25,13 +29,17 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   private _subscription!: Subscription;
 
+  public cartData: Cart[] = [];
+
   constructor(
     private _shopService: ShopManagementService,
+    private _commonService: CommonService,
     private _router: Router
   ) {}
 
   ngOnInit(): void {
     this.loadData();
+    this.cartData = this._shopService.cartData;
   }
 
   loadData(): void {
@@ -63,6 +71,8 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   onAddProductToCart(product: Product, quantity: number): void {
     this._shopService.actionAddProductToCart(product, quantity);
+    this.cartData = this._shopService.cartData;
+    this._commonService.quantityProductInCart$.next(this.cartData.length);
   }
 
   ngOnDestroy(): void {

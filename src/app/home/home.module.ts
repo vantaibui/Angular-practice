@@ -17,9 +17,10 @@ import { ShopModule } from '../shop/shop.module';
 import { HomeComponent } from './home.component';
 import { HeaderModule } from '../shared/home-layout/header/header.module';
 import { FooterModule } from '../shared/home-layout/footer/footer.module';
+import { IndexComponent } from './page/index.component';
 
 @NgModule({
-  declarations: [SlideEffectDirective, HomeComponent],
+  declarations: [SlideEffectDirective, HomeComponent, IndexComponent],
   providers: [AuthService],
   imports: [
     CommonModule,
