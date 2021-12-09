@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CommonService } from 'src/app/shared/helpers/common.service';
+import { Cart } from 'src/models/Cart';
 import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
 import { ShopManagementService } from '../../services/shop-management.service';
@@ -15,15 +17,19 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
 
   public products: Product[] = [];
 
+  public cartData: Cart[] = [];
+
   private _subscription!: Subscription;
 
   constructor(
     private _shopService: ShopManagementService,
+    private _commonService: CommonService,
     private _activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.handleParams();
+    this.cartData = this._shopService.cartData;
   }
 
   handleParams(): void {
@@ -61,6 +67,8 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
 
   onAddProductToCart(product: Product, quantity: number): void {
     this._shopService.actionAddProductToCart(product, quantity);
+    this.cartData = this._shopService.cartData;
+    this._commonService.quantityProductInCart$.next(this.cartData.length);
   }
 
   ngOnDestroy(): void {

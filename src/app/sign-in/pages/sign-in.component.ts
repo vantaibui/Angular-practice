@@ -22,15 +22,15 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   private _subscription!: Subscription;
 
-  public signIn!: FormGroup;
+  public signInForm!: FormGroup;
 
   public hide: boolean = true;
 
   get userNameInput() {
-    return this.signIn.get('username');
+    return this.signInForm.get('username');
   }
   get passwordInput() {
-    return this.signIn.get('password');
+    return this.signInForm.get('password');
   }
 
   constructor(
@@ -45,37 +45,39 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   createFormSignIn(): void {
-    this.signIn = this._formBuilder.group({
+    this.signInForm = this._formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
 
   onLogin(): void {
-    let userLogin = this.signIn.value;
+    let userLogin = this.signInForm.value;
 
-    this._authService
-      .authenticate(userLogin.username, userLogin.password)
-      .subscribe(
-        (result) => {
-          this.user = result;
-          if (this.user.role.toLowerCase().indexOf('admin') !== -1) {
-            this._router.navigate(['/admin']);
-          } else {
-            this._router.navigate(['/']);
-          }
-          localStorage.setItem(
-            `${Constants.USER_LOGIN}`,
-            JSON.stringify(this.user)
-          );
-        },
-        (error) => {
-          console.log(error.error);
-          this._router.navigate(['/sign-in']);
-        }
-      );
+    console.log(this.signInForm);
 
-    this.signIn.reset();
+    // this._authService
+    //   .authenticate(userLogin.username, userLogin.password)
+    //   .subscribe(
+    //     (result) => {
+    //       this.user = result;
+    //       if (this.user.role.toLowerCase().indexOf('admin') !== -1) {
+    //         this._router.navigate(['/admin']);
+    //       } else {
+    //         this._router.navigate(['/']);
+    //       }
+    //       localStorage.setItem(
+    //         `${Constants.USER_LOGIN}`,
+    //         JSON.stringify(this.user)
+    //       );
+    //     },
+    //     (error) => {
+    //       console.log(error.error);
+    //       this._router.navigate(['/sign-in']);
+    //     }
+    //   );
+
+    // this.signIn.reset();
   }
 
   ngOnDestroy(): void {

@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CommonService } from 'src/app/shared/helpers/common.service';
 import { Cart } from 'src/models/Cart';
 import { Product } from 'src/models/Product';
 import { ShopManagementService } from '../../services/shop-management.service';
@@ -23,12 +24,11 @@ export class ProductDetailComponent implements OnInit {
 
   private _cart: any = localStorage.getItem('cart');
 
-  public cartData: Cart[] = JSON.parse(this._cart)
-    ? JSON.parse(this._cart)
-    : [];
+  public cartData: Cart[] = [];
 
   constructor(
     private _shopService: ShopManagementService,
+    private _commonService: CommonService,
     private _activatedRoute: ActivatedRoute
   ) {
     this.product = new Product();
@@ -36,6 +36,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleParams();
+    this.cartData = this._shopService.cartData;
   }
 
   handleParams(): void {
@@ -56,5 +57,6 @@ export class ProductDetailComponent implements OnInit {
   onAddProductToCart(product: Product, quantity: number): void {
     this._shopService.actionAddProductToCart(product, quantity);
     this.cartData = this._shopService.cartData;
+    this._commonService.quantityProductInCart$.next(this.cartData.length);
   }
 }

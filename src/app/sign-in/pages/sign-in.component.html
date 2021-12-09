@@ -1,6 +1,6 @@
 <form
   class="mat-typography login-form"
-  [formGroup]="signIn"
+  [formGroup]="signInForm"
   (ngSubmit)="onLogin()"
 >
   <h3>sign in</h3>
@@ -32,7 +32,9 @@
     <input type="checkbox" name="remember-me" id="remember-me" />
     <label for="remember-me">Remember me</label>
   </div>
-  <button type="submit" class="btn">Sign In</button>
+  <button type="submit" class="btn" [disabled]="signInForm.invalid">
+    Sign In
+  </button>
   <p>Forgot password? <a href="">Click here</a></p>
   <p>Don't have an account? <a routerLink="/sign-up">Sign up</a></p>
 </form>

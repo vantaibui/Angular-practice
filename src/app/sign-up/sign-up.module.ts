@@ -9,12 +9,14 @@ import { SignUpRoutingModule } from './sign-up-routing.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { UsersAPI } from 'src/apis/users/users.api';
 import { SignUpService } from './services/sign-up.service';
+import { ValidateFormModule } from '../shared/helpers/validate-form/validate-form.module';
 
 @NgModule({
   declarations: [SignUpComponent],
   imports: [
     CommonModule,
     MaterialModule,
+    ValidateFormModule,
     ReactiveFormsModule,
     SignUpRoutingModule,
   ],

@@ -15,6 +15,10 @@
           formControlName="username"
           class="form-input"
         />
+        <app-validate-form
+          [name-control]="'username'"
+          [control]="signUpForm.controls.username"
+        ></app-validate-form>
       </mat-form-field>
     </div>
     <div class="form-group">
@@ -29,6 +33,10 @@
         <mat-icon matSuffix (click)="hide = !hide">{{
           hide ? "visibility_off" : "visibility"
         }}</mat-icon>
+        <app-validate-form
+          [name-control]="'password'"
+          [control]="signUpForm.controls.password"
+        ></app-validate-form>
       </mat-form-field>
     </div>
   </div>
@@ -44,6 +52,10 @@
           formControlName="firstName"
           class="form-input"
         />
+        <app-validate-form
+          [name-control]="'firstName'"
+          [control]="signUpForm.controls.firstName"
+        ></app-validate-form>
       </mat-form-field>
     </div>
     <div class="form-group">
@@ -56,6 +68,10 @@
           formControlName="lastName"
           class="form-input"
         />
+        <app-validate-form
+          [name-control]="'lastName'"
+          [control]="signUpForm.controls.lastName"
+        ></app-validate-form>
       </mat-form-field>
     </div>
   </div>
@@ -71,6 +87,10 @@
           formControlName="birthday"
           class="form-input"
         />
+        <app-validate-form
+          [name-control]="'birthday'"
+          [control]="signUpForm.controls.birthday"
+        ></app-validate-form>
       </mat-form-field>
     </div>
     <div class="form-group">
@@ -86,28 +106,39 @@
     </div>
   </div>
 
-  <mat-form-field class="form-field" appearance="outline">
-    <mat-label>Email</mat-label>
-    <input
-      type="text"
-      matInput
-      placeholder=" "
-      formControlName="email"
-      class="form-input"
-    />
-  </mat-form-field>
+  <div>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        formControlName="email"
+        class="form-input"
+      />
+      <app-validate-form
+        [name-control]="'email'"
+        [control]="signUpForm.controls.email"
+      ></app-validate-form>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field class="form-field" appearance="outline">
-    <mat-label>Phone</mat-label>
-    <input
-      type="text"
-      matInput
-      placeholder=" "
-      formControlName="phone"
-      class="form-input"
-    />
-  </mat-form-field>
-
+  <div>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=" "
+        formControlName="phone"
+        class="form-input"
+      />
+      <app-validate-form
+        [name-control]="'phone'"
+        [control]="signUpForm.controls.phone"
+      ></app-validate-form>
+    </mat-form-field>
+  </div>
   <button type="submit" class="btn">Sign Up</button>
   <p>Already a member? <a routerLink="/sign-in">Sign in</a></p>
 </form>
