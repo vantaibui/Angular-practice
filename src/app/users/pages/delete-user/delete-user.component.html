@@ -1,1 +1,7 @@
-<p>delete-user works!</p>
+<h1 mat-dialog-title>Are you sure you want to delete?</h1>
+<div mat-dialog-actions [style.float]="'right'">
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="warn" (click)="onDeleteUser(data.user)">
+    Delete
+  </button>
+</div>

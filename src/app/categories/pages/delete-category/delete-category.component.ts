@@ -20,7 +20,6 @@ export class DeleteCategoryComponent implements OnInit {
   onDeleteCategory(id: number): void {
     this._categoryService.actionDeleteCategory(id).subscribe(
       (result) => {
-        console.log(result);
         this.dialogRef.close(id);
       },
       (error) => {

@@ -7,12 +7,6 @@ import { HomeRoutingModule } from './home-routing.module';
 // Directive
 import { SlideEffectDirective } from './directives/slide-effect.directive';
 
-// Service
-import { AuthService } from './services/auth/auth.service';
-
-// Module
-import { ShopModule } from '../shop/shop.module';
-
 // Component
 import { HomeComponent } from './home.component';
 import { HeaderModule } from '../shared/home-layout/header/header.module';
@@ -21,11 +15,10 @@ import { IndexComponent } from './page/index.component';
 
 @NgModule({
   declarations: [SlideEffectDirective, HomeComponent, IndexComponent],
-  providers: [AuthService],
+  providers: [],
   imports: [
     CommonModule,
     HttpClientModule,
-    ShopModule,
     HomeRoutingModule,
     HeaderModule,
     FooterModule,

@@ -2,23 +2,32 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { UsersRoutingsModule } from './users-routing.module';
+import { UsersComponent } from './users.component';
+import { UsersRoutingModule } from './users-routing.module';
+import { AdminLayoutModule } from '../shared/admin-layout/admin-layout.module';
+
+import { MaterialModule } from '../shared/material/material.module';
+
+import { UserManagementService } from './services/user-management.service';
 
 // Component
-import { UsersComponent } from './users.component';
-import { UserDetailComponent } from './pages/user-detail/user-detail.component';
-import { AddUserComponent } from './pages/add-user/add-user.component';
-import { DeleteUserComponent } from './pages/delete-user/delete-user.component';
-import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import * as Component from './pages';
 
 @NgModule({
   declarations: [
     UsersComponent,
-    UserDetailComponent,
-    AddUserComponent,
-    DeleteUserComponent,
-    UpdateUserComponent,
+    Component.UserListComponent,
+    Component.DeleteUserComponent,
+    Component.UpdateUserComponent,
   ],
-  imports: [CommonModule, UsersRoutingsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    AdminLayoutModule,
+    UsersRoutingModule,
+  ],
+  providers: [UserManagementService],
+  exports: [UsersComponent],
 })
 export class UsersModule {}

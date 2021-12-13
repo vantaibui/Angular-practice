@@ -35,6 +35,17 @@
   <button type="submit" class="btn" [disabled]="signInForm.invalid">
     Sign In
   </button>
-  <p>Forgot password? <a href="">Click here</a></p>
-  <p>Don't have an account? <a routerLink="/sign-up">Sign up</a></p>
+
+  <div class="row">
+    <div class="col-5">
+      <p>Forgot password? <a href="">Click here</a></p>
+      <p>Don't have an account? <a routerLink="/sign-up">Sign up</a></p>
+    </div>
+
+    <div class="col-5">
+      <a [routerLink]="['/']" class="logo" title="Back to"
+        ><i class="fal fa-arrow-right"></i
+      ></a>
+    </div>
+  </div>
 </form>

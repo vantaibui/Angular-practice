@@ -5,16 +5,8 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
 })
-export class ShopComponent implements OnInit, OnChanges {
+export class ShopComponent implements OnInit {
   constructor() {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
-
   ngOnInit(): void {}
-
-  onGetCartData(value: any): void {
-    console.log(value);
-  }
 }

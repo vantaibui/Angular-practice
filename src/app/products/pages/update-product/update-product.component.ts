@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
 import { ProductManagementService } from '../../services/product-management.service';
@@ -19,31 +19,16 @@ export class UpdateProductComponent implements OnInit {
   public editProductForm!: FormGroup;
 
   constructor(
-    private _router: Router,
-    private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _productService: ProductManagementService,
     public dialogRef: MatDialogRef<UpdateProductComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { idProduct: number }
+    @Inject(MAT_DIALOG_DATA) public data: { product: Product }
   ) {}
 
   ngOnInit(): void {
-    this.product = new Product();
-    this.loadData();
+    this.product = this.data.product;
     this.loadCategories();
     this.createFormEdit();
-  }
-
-  loadData(): void {
-    let idProduct: number = this.data.idProduct;
-    this._productService.actionFetchProductById(idProduct).subscribe(
-      (result: Product) => {
-        this.product = result;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 
   createFormEdit(): void {

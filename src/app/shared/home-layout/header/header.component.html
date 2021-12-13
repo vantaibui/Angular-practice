@@ -2,7 +2,7 @@
   <a [routerLink]="['/']" class="logo"
     ><i class="fas fa-shopping-basket"></i>groco</a
   >
-  <nav class="navbar">
+  <nav [class]="{ navbar: true, active: activeMenu }">
     <a
       class="navbar-link"
       [routerLink]="['/']"
@@ -27,7 +27,11 @@
     >
   </nav>
   <div class="icons">
-    <div class="fas fa-bars" id="menu-btn"></div>
+    <div
+      class="fas fa-bars"
+      id="menu-btn"
+      (click)="activeMenu = !activeMenu"
+    ></div>
     <div
       class="fas fa-search"
       id="search-btn"

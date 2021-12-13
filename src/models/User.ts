@@ -11,6 +11,7 @@ export class User extends AbstractModel {
   private _birthday!: string;
   private _email!: string;
   private _phone!: string;
+  private _status!: boolean;
 
   private _role!: string;
   private _token?: string;
@@ -72,6 +73,12 @@ export class User extends AbstractModel {
   }
   get phone(): string {
     return this._phone;
+  }
+  set status(status: boolean) {
+    this._status = status;
+  }
+  get status(): boolean {
+    return this._status;
   }
   set role(role: string) {
     this._role = role;

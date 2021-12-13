@@ -8,7 +8,10 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+import { MatDialog } from '@angular/material/dialog';
+
 // Model
+import { User } from 'src/models/User';
 import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
 import { Cart } from 'src/models/Cart';
@@ -16,6 +19,8 @@ import { Cart } from 'src/models/Cart';
 // Service
 import { ShopManagementService } from '../../services/shop-management.service';
 import { CommonService } from 'src/app/shared/helpers/common.service';
+
+import { CheckSignInComponent } from '..';
 
 @Component({
   selector: 'app-index',
@@ -27,19 +32,23 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   public categories: Category[] = [];
 
-  private _subscription!: Subscription;
-
   public cartData: Cart[] = [];
+
+  public currentUser!: User;
+
+  private _subscription!: Subscription;
 
   constructor(
     private _shopService: ShopManagementService,
     private _commonService: CommonService,
-    private _router: Router
+    private _router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.loadData();
     this.cartData = this._shopService.cartData;
+    this.currentUser = this._commonService.currentUserValue;
   }
 
   loadData(): void {
@@ -70,9 +79,17 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   onAddProductToCart(product: Product, quantity: number): void {
-    this._shopService.actionAddProductToCart(product, quantity);
-    this.cartData = this._shopService.cartData;
-    this._commonService.quantityProductInCart$.next(this.cartData.length);
+    if (this.currentUser) {
+      this._shopService.actionAddProductToCart(product, quantity);
+      this.cartData = this._shopService.cartData;
+      this._commonService.quantityProductInCart$.next(this.cartData.length);
+    } else {
+      this.openDialog();
+    }
+  }
+
+  openDialog(): void {
+    this.dialog.open(CheckSignInComponent);
   }
 
   ngOnDestroy(): void {

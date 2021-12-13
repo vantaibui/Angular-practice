@@ -1,1 +1,146 @@
-<p>update-user works!</p>
+<form
+  class="login-form signup-form mat-typography"
+  [formGroup]="editUserForm"
+  (ngSubmit)="onUpdateUser()"
+>
+  <h3>Edit user</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="username"
+          [(ngModel)]="user.username"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="password"
+          [(ngModel)]="user.password"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="firstName"
+          [(ngModel)]="user.firstName"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="lastName"
+          [(ngModel)]="user.lastName"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="email"
+          [(ngModel)]="user.email"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Gender</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="gender"
+          [(ngModel)]="user.gender"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="phone"
+          [(ngModel)]="user.phone"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Role</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="role"
+          [(ngModel)]="user.role"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <mat-form-field class="form-field" appearance="outline">
+    <mat-label>Birthday</mat-label>
+    <input
+      type="date"
+      matInput
+      placeholder=" "
+      class="form-input"
+      formControlName="birthday"
+      [(ngModel)]="user.birthday"
+    />
+  </mat-form-field>
+
+  <div class="form-field input-radio" placeholder=" ">
+    <label>Status </label>
+    <mat-radio-group
+      class="radio-group"
+      formControlName="status"
+      [(ngModel)]="user.status"
+    >
+      <mat-radio-button value="true" [checked]="true">Active</mat-radio-button>
+      <mat-radio-button value="false">No active</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <button type="submit" class="btn">Update</button>
+</form>

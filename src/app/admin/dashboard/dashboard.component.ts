@@ -7,10 +7,11 @@ import {
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProductManagementService } from 'src/app/products/services/product-management.service';
+import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
+import { User } from 'src/models/User';
+import { AdminManagementService } from '../services/admin-management.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,10 +36,11 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(
-    private _router: Router,
-    private _productService: ProductManagementService
-  ) {
+  public quantityCategory: number = 0;
+  public quantityProduct: number = 0;
+  public quantityUser: number = 0;
+
+  constructor(private _adminService: AdminManagementService) {
     this.productList = [];
   }
 
@@ -47,12 +49,37 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadData(): void {
-    this._subscription = this._productService.actionFetchAllProduct().subscribe(
+    // Load category
+    this._subscription = this._adminService.actionFetchAllCategory().subscribe(
+      (result: Category[]) => {
+        this.quantityCategory = result.length;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    // Load product
+    this._subscription = this._adminService.actionFetchAllProduct().subscribe(
       (result: Product[]) => {
         this.productList = result;
+
+        // Quantity product
+        this.quantityProduct = this.productList.length;
+
         // Pagination table
         this.dataSource = new MatTableDataSource<Product>(result);
         this.dataSource.paginator = this.paginator;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    // Load user
+    this._subscription = this._adminService.actionFetchAllUser().subscribe(
+      (result: User[]) => {
+        this.quantityUser = result.length;
       },
       (err) => {
         console.log(err);

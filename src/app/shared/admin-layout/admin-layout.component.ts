@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/User';
-import { AuthenticationService } from '../helpers/authentication.service';
+import { CommonService } from '../helpers/common.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -8,17 +8,19 @@ import { AuthenticationService } from '../helpers/authentication.service';
   styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent implements OnInit {
-  private userLogin: any = localStorage.getItem('user_login');
+  // private userLogin: any = localStorage.getItem('user_login');
 
   public account!: User;
 
-  constructor(private _authenticationService: AuthenticationService) {}
+  constructor(private _commonService: CommonService) {}
 
   ngOnInit(): void {
-    this.account = JSON.parse(this.userLogin);
+    // this.account = JSON.parse(this.userLogin);
+
+    this.account = this._commonService.currentUserValue;
   }
 
   logout(): void {
-    this._authenticationService.logout();
+    this._commonService.logout();
   }
 }

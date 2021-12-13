@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// Component
 import { ProductsComponent } from './products.component';
-import { AddProductComponent } from './pages/add-product/add-product.component';
-import { ProductListComponent } from './pages/product-list/product-list.component';
-import { UpdateProductComponent } from './pages/update-product/update-product.component';
 import { AuthorizationGuard } from '../shared/helpers/authorization.guard';
+
+// Component
+import * as Component from './pages';
 
 export const routes: Routes = [
   {
@@ -18,11 +17,7 @@ export const routes: Routes = [
     path: '',
     component: ProductsComponent,
     canActivate: [AuthorizationGuard],
-    children: [
-      { path: 'list', component: ProductListComponent },
-      { path: 'addProduct', component: AddProductComponent },
-      { path: 'editProduct/:id', component: UpdateProductComponent },
-    ],
+    children: [{ path: 'list', component: Component.ProductListComponent }],
   },
 ];
 

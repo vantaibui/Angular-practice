@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UsersAPI } from 'src/apis/users/users.api';
+import { UserAPI } from 'src/apis/user/user.api';
 
 // Model
 import { User } from 'src/models/User';
@@ -13,11 +13,11 @@ import * as Constants from '../../../constants';
   providedIn: 'root',
 })
 export class SignUpService {
-  constructor(private _usersAPI: UsersAPI) {}
+  constructor(private _userAPI: UserAPI) {}
 
   signUp(user: User): Observable<User> {
     // return this._http.post<User>(`${Constants.BASE_URL}/register`, user);
     user.role = 'User';
-    return this._usersAPI.signUp(user);
+    return this._userAPI.signUp(user);
   }
 }

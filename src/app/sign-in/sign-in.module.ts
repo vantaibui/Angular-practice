@@ -7,7 +7,6 @@ import { SignInRoutingModule } from './sign-in-routing.module';
 
 // Material
 import { MaterialModule } from '../shared/material/material.module';
-import { UsersAPI } from 'src/apis/users/users.api';
 import { AuthenticateService } from './services/authenticate.service';
 
 @NgModule({
@@ -18,7 +17,7 @@ import { AuthenticateService } from './services/authenticate.service';
     ReactiveFormsModule,
     SignInRoutingModule,
   ],
-  providers: [UsersAPI, AuthenticateService],
+  providers: [AuthenticateService],
   exports: [SignInComponent],
 })
 export class SignInModule {}

@@ -28,16 +28,17 @@
       />
     </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="outline">
-      <mat-label>Thumbnail</mat-label>
+    <div class="form-field form-field-thumbnail">
+      <label for="thumbnail"
+        ><i class="fal fa-plus-circle"></i>Add a thumbnail file</label
+      >
       <input
-        type="text"
-        matInput
-        placeholder=" "
-        class="form-input"
+        type="file"
+        name="thumbnail"
+        id="thumbnail"
         formControlName="thumbnail"
       />
-    </mat-form-field>
+    </div>
 
     <!-- <button type="submit" class="btn">Create</button> -->
   </mat-dialog-content>

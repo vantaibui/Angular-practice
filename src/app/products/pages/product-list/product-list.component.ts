@@ -107,9 +107,9 @@ export class ProductListComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  openDialogEdit(id: number): void {
+  openDialogEdit(product: Product): void {
     const dialogRef = this.dialog.open(UpdateProductComponent, {
-      data: { idProduct: id },
+      data: { product },
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.updateDataAfterActionCompleted(result, 'edit');

@@ -84,3 +84,99 @@ section {
     }
   }
 }
+
+// Menu
+#menu-btn {
+  display: none;
+}
+
+// media queries
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+
+  .header {
+    padding: 2rem;
+  }
+
+  section {
+    padding: 3rem 2rem;
+  }
+
+  .home #next-slide,
+  .home #prev-slide {
+    transform: translateY(0);
+    top: 88%;
+  }
+
+  .home #prev-slide {
+    left: auto;
+    right: 8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
+
+  .header {
+    .search-form {
+      width: 100%;
+      right: 0;
+      border-radius: 0;
+
+      &.active {
+        top: 100%;
+        border-top: $border;
+        border-bottom: $border;
+      }
+    }
+
+    .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: $white;
+      border-top: $border;
+      border-bottom: $border;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      text-align: center;
+      padding-bottom: 20px;
+
+      &.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+
+      a {
+        margin: 1.5rem;
+        padding: 1.5rem;
+        background: $light-bg;
+        font-size: 2rem;
+        display: block;
+        border-radius: 0.5rem;
+
+        & + a {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+
+  .home .slides-container .slide .content h3 {
+    font-size: 5rem;
+  }
+
+  .contact .row form .inputBox input {
+    width: 100%;
+  }
+}

@@ -5,7 +5,6 @@ import { Cart } from 'src/models/Cart';
 import { User } from 'src/models/User';
 
 // Service
-import { AuthenticationService } from '../../helpers/authentication.service';
 import { CommonService } from '../../helpers/common.service';
 
 @Component({
@@ -15,20 +14,19 @@ import { CommonService } from '../../helpers/common.service';
 })
 export class HeaderComponent implements OnInit {
   public activeFormSearch: boolean = false;
+  public activeMenu: boolean = false;
 
-  private userLogin: any = localStorage.getItem('user_login');
+  // private userLogin: any = localStorage.getItem('user_login');
 
   public account!: User;
 
   public quantityProductInCart: number = 0;
 
-  constructor(
-    private _authenticationService: AuthenticationService,
-    private _commonService: CommonService
-  ) {}
+  constructor(private _commonService: CommonService) {}
 
   ngOnInit(): void {
-    this.account = JSON.parse(this.userLogin);
+    // this.account = JSON.parse(this.userLogin);
+    this.account = this._commonService.currentUserValue;
 
     this._commonService.quantityProductInCart$.subscribe(
       (result: number) => {
@@ -41,6 +39,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this._authenticationService.logout();
+    this._commonService.logout();
   }
 }

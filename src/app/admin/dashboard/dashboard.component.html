@@ -1,8 +1,8 @@
 <div class="cards">
   <div class="card-single">
     <div class="card-info">
-      <h1>54</h1>
-      <span>Customer</span>
+      <h1>{{ quantityUser }}</h1>
+      <span>User</span>
     </div>
     <div class="card-icon">
       <i class="fa fa-users"></i>
@@ -10,29 +10,20 @@
   </div>
   <div class="card-single">
     <div class="card-info">
-      <h1>79</h1>
-      <span>Projects</span>
+      <h1>{{ quantityCategory }}</h1>
+      <span>Category</span>
     </div>
     <div class="card-icon">
-      <i class="fa fa-clipboard-list"></i>
+      <i class="fab fa-cuttlefish"></i>
     </div>
   </div>
   <div class="card-single">
     <div class="card-info">
-      <h1>124</h1>
-      <span>Orders</span>
+      <h1>{{ quantityProduct }}</h1>
+      <span>Product</span>
     </div>
     <div class="card-icon">
-      <i class="fa fa-shopping-bag"></i>
-    </div>
-  </div>
-  <div class="card-single">
-    <div class="card-info">
-      <h1>$6k</h1>
-      <span>Income</span>
-    </div>
-    <div class="card-icon">
-      <i class="fab fa-google-wallet"></i>
+      <i class="fab fa-product-hunt"></i>
     </div>
   </div>
 </div>
@@ -103,11 +94,11 @@
       </div>
     </div>
   </div>
-  <div class="customers">
+  <!-- <div class="customers">
     <div class="card">
       <div class="card-header">
         <h3>User</h3>
-        <button class="btn btn-expand">
+        <button class="btn btn-expand" routerLink="/admin/users">
           See all <i class="fas fa-arrow-right"></i>
         </button>
       </div>
@@ -130,5 +121,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

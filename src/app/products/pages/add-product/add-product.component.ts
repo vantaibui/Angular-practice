@@ -1,7 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Category } from 'src/models/Category';
 
 import { Product } from 'src/models/Product';
@@ -21,6 +22,8 @@ export class AddProductComponent implements OnInit, OnDestroy {
   public categories: Category[] = [];
 
   public status: Boolean = true;
+
+  private _subscription!: Subscription;
 
   constructor(
     private _router: Router,
@@ -60,16 +63,18 @@ export class AddProductComponent implements OnInit, OnDestroy {
         ? true
         : false;
 
-    this._productService.actionCreateProduct(this._product).subscribe(
-      (result) => {
-        this._product = result;
-        // this._router.navigateByUrl('/admin/products');
-        this.dialogRef.close(this._product);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this._subscription = this._productService
+      .actionCreateProduct(this._product)
+      .subscribe(
+        (result) => {
+          this._product = result;
+          // this._router.navigateByUrl('/admin/products');
+          this.dialogRef.close(this._product);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   loadCategories(): void {
@@ -83,5 +88,9 @@ export class AddProductComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    if (this._subscription) {
+      this._subscription.unsubscribe();
+    }
+  }
 }

@@ -7,20 +7,15 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from 'src/models/User';
-
-import { AuthenticationService } from './authentication.service';
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationGuard implements CanActivate {
-  private _userLogin: any = localStorage.getItem('user_login');
+  // private _userLogin: any = localStorage.getItem('user_login');
 
-  constructor(
-    private _router: Router,
-    private _authenticationService: AuthenticationService
-  ) {}
+  constructor(private _router: Router, private _commonService: CommonService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -30,8 +25,10 @@ export class AuthorizationGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this._userLogin) {
-      let currentUser: any = JSON.parse(this._userLogin);
+    let currentUser = this._commonService.currentUserValue;
+
+    if (currentUser) {
+      // let currentUser: any = JSON.parse(this._userLogin);
 
       if (currentUser.role.toLowerCase().indexOf('admin') !== -1) {
         return true;

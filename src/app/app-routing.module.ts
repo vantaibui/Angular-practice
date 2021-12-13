@@ -41,6 +41,11 @@ const routes: Routes = [
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
+    path: 'admin/users',
+    loadChildren: () =>
+      import('./users/users.module').then((m) => m.UsersModule),
+  },
+  {
     path: 'admin/categories',
     loadChildren: () =>
       import('./categories/categories.module').then((m) => m.CategoriesModule),
@@ -49,11 +54,6 @@ const routes: Routes = [
     path: 'admin/products',
     loadChildren: () =>
       import('./products/products.module').then((m) => m.ProductsModule),
-  },
-  {
-    path: 'admin/users',
-    loadChildren: () =>
-      import('./users/users.module').then((m) => m.UsersModule),
   },
 
   // Sign in

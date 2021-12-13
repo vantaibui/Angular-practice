@@ -237,6 +237,8 @@ $width-sidebar: 260px;
           li {
             padding: 10px 4px;
             border-top: 1px solid #000;
+            cursor: pointer;
+
             a {
               display: flex;
               align-items: center;
@@ -247,6 +249,7 @@ $width-sidebar: 260px;
               font-size: 1.4rem;
               font-weight: 500;
               transition: all 0.2s;
+              cursor: pointer;
               &:hover {
                 color: #000;
                 i {

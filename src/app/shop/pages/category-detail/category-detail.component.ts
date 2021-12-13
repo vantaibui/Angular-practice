@@ -1,12 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+
 import { CommonService } from 'src/app/shared/helpers/common.service';
-import { Cart } from 'src/models/Cart';
-import { Category } from 'src/models/Category';
-import { Product } from 'src/models/Product';
 import { ShopManagementService } from '../../services/shop-management.service';
 
+import { User } from 'src/models/User';
+import { Category } from 'src/models/Category';
+import { Product } from 'src/models/Product';
+import { Cart } from 'src/models/Cart';
+
+import { CheckSignInComponent } from '..';
 @Component({
   selector: 'app-category-detail',
   templateUrl: './category-detail.component.html',
@@ -19,25 +24,31 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
 
   public cartData: Cart[] = [];
 
+  public currentUser!: User;
+
   private _subscription!: Subscription;
 
   constructor(
     private _shopService: ShopManagementService,
     private _commonService: CommonService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.handleParams();
     this.cartData = this._shopService.cartData;
+    this.currentUser = this._commonService.currentUserValue;
   }
 
   handleParams(): void {
-    this._activatedRoute.params.subscribe((params: Params) => {
-      let idCategory = parseInt(params['id']);
+    this._subscription = this._activatedRoute.params.subscribe(
+      (params: Params) => {
+        let idCategory = parseInt(params['id']);
 
-      this.loadCategoryById(idCategory);
-    });
+        this.loadCategoryById(idCategory);
+      }
+    );
   }
 
   loadCategoryById(idCategory: number): void {
@@ -55,20 +66,30 @@ export class CategoryDetailComponent implements OnInit, OnDestroy {
   }
 
   loadProducts(categoryCode: string): void {
-    this._shopService.actionFetchProductByCategoryCode(categoryCode).subscribe(
-      (result: Product[]) => {
-        this.products = result;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this._subscription = this._shopService
+      .actionFetchProductByCategoryCode(categoryCode)
+      .subscribe(
+        (result: Product[]) => {
+          this.products = result;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   onAddProductToCart(product: Product, quantity: number): void {
-    this._shopService.actionAddProductToCart(product, quantity);
-    this.cartData = this._shopService.cartData;
-    this._commonService.quantityProductInCart$.next(this.cartData.length);
+    if (this.currentUser) {
+      this._shopService.actionAddProductToCart(product, quantity);
+      this.cartData = this._shopService.cartData;
+      this._commonService.quantityProductInCart$.next(this.cartData.length);
+    } else {
+      this.openDialog();
+    }
+  }
+
+  openDialog(): void {
+    this.dialog.open(CheckSignInComponent);
   }
 
   ngOnDestroy(): void {

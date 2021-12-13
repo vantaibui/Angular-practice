@@ -8,6 +8,7 @@ import { User } from 'src/models/User';
 
 // Service
 import { AuthenticateService } from '../services/authenticate.service';
+import { CommonService } from 'src/app/shared/helpers/common.service';
 
 // Constants
 import * as Constants from '../../../constants';
@@ -35,6 +36,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   constructor(
     private _authService: AuthenticateService,
+    private _commonService: CommonService,
     private _router: Router,
     public _formBuilder: FormBuilder
   ) {}
@@ -54,30 +56,30 @@ export class SignInComponent implements OnInit, OnDestroy {
   onLogin(): void {
     let userLogin = this.signInForm.value;
 
-    console.log(this.signInForm);
+    this._subscription = this._authService
+      .authenticate(userLogin.username, userLogin.password)
+      .subscribe(
+        (result) => {
+          this.user = result;
+          if (this.user.role.toLowerCase().indexOf('admin') !== -1) {
+            this._router.navigate(['/admin']);
+          } else {
+            this._router.navigate(['/']);
+          }
+          this._commonService.currentUserSubject$.next(this.user);
 
-    // this._authService
-    //   .authenticate(userLogin.username, userLogin.password)
-    //   .subscribe(
-    //     (result) => {
-    //       this.user = result;
-    //       if (this.user.role.toLowerCase().indexOf('admin') !== -1) {
-    //         this._router.navigate(['/admin']);
-    //       } else {
-    //         this._router.navigate(['/']);
-    //       }
-    //       localStorage.setItem(
-    //         `${Constants.USER_LOGIN}`,
-    //         JSON.stringify(this.user)
-    //       );
-    //     },
-    //     (error) => {
-    //       console.log(error.error);
-    //       this._router.navigate(['/sign-in']);
-    //     }
-    //   );
+          localStorage.setItem(
+            `${Constants.USER_LOGIN}`,
+            JSON.stringify(this.user)
+          );
+        },
+        (error) => {
+          console.log(error.error);
+          this._router.navigate(['/sign-in']);
+        }
+      );
 
-    // this.signIn.reset();
+    this.signInForm.reset();
   }
 
   ngOnDestroy(): void {

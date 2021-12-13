@@ -1,21 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Model
+import { Category } from 'src/models/Category';
 import { Product } from 'src/models/Product';
 
-// Constants
-import * as Constants from '../../../constants';
-
+// API
 import { ProductAPI } from '../../../apis/product/product.api';
 import { CategoryAPI } from 'src/apis/category/category.api';
-import { Category } from 'src/models/Category';
-
-let userLogin: any = localStorage.getItem(Constants.USER_LOGIN);
-
-let token: string | null =
-  userLogin !== null ? JSON.parse(userLogin).token : {};
 
 @Injectable({
   providedIn: 'root',

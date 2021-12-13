@@ -15,28 +15,32 @@
       formControlName="name"
     />
   </mat-form-field>
-
-  <mat-form-field class="form-field" appearance="outline">
-    <mat-label>Price</mat-label>
-    <input
-      type="number"
-      matInput
-      placeholder=" "
-      class="form-input"
-      formControlName="price"
-    />
-  </mat-form-field>
-
-  <mat-form-field class="form-field" appearance="outline">
-    <mat-label>Quantity</mat-label>
-    <input
-      type="number"
-      matInput
-      placeholder=" "
-      class="form-input"
-      formControlName="quantity"
-    />
-  </mat-form-field>
+  <div class="form-row">
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Price</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="price"
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=" "
+          class="form-input"
+          formControlName="quantity"
+        />
+      </mat-form-field>
+    </div>
+  </div>
 
   <mat-form-field class="form-field" appearance="outline">
     <mat-label>Category</mat-label>
@@ -54,6 +58,18 @@
       <mat-radio-button value="true" [checked]="true">Active</mat-radio-button>
       <mat-radio-button value="false">No active</mat-radio-button>
     </mat-radio-group>
+  </div>
+
+  <div class="form-field form-field-thumbnail">
+    <label for="thumbnail"
+      ><i class="fal fa-plus-circle"></i>Add a thumbnail file</label
+    >
+    <input
+      type="file"
+      name="thumbnail"
+      id="thumbnail"
+      formControlName="thumbnail"
+    />
   </div>
 
   <button type="submit" class="btn">Create</button>

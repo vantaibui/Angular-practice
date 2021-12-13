@@ -7,7 +7,6 @@ import { SignUpRoutingModule } from './sign-up-routing.module';
 
 // Material
 import { MaterialModule } from '../shared/material/material.module';
-import { UsersAPI } from 'src/apis/users/users.api';
 import { SignUpService } from './services/sign-up.service';
 import { ValidateFormModule } from '../shared/helpers/validate-form/validate-form.module';
 
@@ -20,7 +19,7 @@ import { ValidateFormModule } from '../shared/helpers/validate-form/validate-for
     ReactiveFormsModule,
     SignUpRoutingModule,
   ],
-  providers: [UsersAPI, SignUpService],
+  providers: [SignUpService],
   exports: [SignUpComponent],
 })
 export class SignUpModule {}
